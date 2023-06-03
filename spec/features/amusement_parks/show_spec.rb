@@ -14,7 +14,6 @@ RSpec.describe "Amusement Park Show Page" do
       rm_2 = RideMechanic.create!(ride: ride_3, mechanic: mech2)
 
       visit "/amusement_parks/#{park.id}"
-      save_and_open_page
       expect(page).to have_content(mech.name)
       expect(page).to have_content(park.name)
       expect(page).to have_content(park.admission_cost)
