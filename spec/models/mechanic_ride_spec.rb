@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe Mechanic, type: :model do
+RSpec.describe MechanicRide, type: :model do
   describe "relationships" do
-
+    
   end
 end
