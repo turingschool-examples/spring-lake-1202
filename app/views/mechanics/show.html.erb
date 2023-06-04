@@ -1,7 +1,18 @@
 <h1><%= "Mechanic ##{@mechanic.id}" %></h1>
 <h2><%= "#{@mechanic.name}" %></h2>
 <p><%= "Years Experience: #{@mechanic.years_experience}" %></p>
-<h3>Rides Working On:</h3>
-<% @mechanic.rides.each do |ride| %>
-  <p><%= ride.name %></p>
-<% end %>
+<div class=<%= "mechanic_#{@mechanic.id}_rides" %>>
+  <h3>Rides Working On:</h3>
+  <% @mechanic.rides.each do |ride| %>
+    <p><%= ride.name %></p>
+  <% end %>
+</div>
+
+<div class=<%= "add_ride_to_mechanic_#{@mechanic.id}" %>>
+    <%= form_with url: "/ride_mechanics", method: :post, local: true do |form| %>
+      <%= form.label "Ride ID:" %>
+      <%= form.number_field :ride_id %>
+      <%= form.hidden_field :mechanic_id, value: @mechanic.id %>
+      <%= form.submit "Add Ride" %>
+    <% end %>
+</div>
