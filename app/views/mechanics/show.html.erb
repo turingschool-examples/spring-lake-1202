@@ -1,11 +1,12 @@
 <h1>Mechanic Show Page</h1>
 
-<h2>Mechanic Name: <%= @mechanic.name %> </h2>
+<h2>Mechanic: <%= @mechanic.name %> </h2>
 <h3>Years of Experience: <%= @mechanic.years_of_experience %> </h3>
-<h4>Rides Working on:</h4>
-<ul>
-  <% @mechanic.rides.each do |ride| %>
-    <li><%= ride.name %></li>
-  <% end %>
-</ul>
+<div id=mechanic-rides><h4>Current rides they're working on:</h4>
+  <ul>
+    <% @mechanic.rides.each do |ride| %>
+      <li><%= ride.name %></li>
+    <% end %>
+  </ul>
+</div>
 
