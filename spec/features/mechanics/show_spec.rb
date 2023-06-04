@@ -25,6 +25,7 @@ RSpec.describe "Mechanic Show Page" do
   end
 
   describe "Show Page Display" do
+    # User Story 1
     it "displays the mechanic's name, years experience, and the names of rides they work on" do
       visit mechanic_path(@mechanic_1)
 
@@ -37,7 +38,7 @@ RSpec.describe "Mechanic Show Page" do
       expect(page).to_not have_content(@mechanic_2.name)
 
       visit mechanic_path(@mechanic_2)
-      
+
       expect(page).to have_content(@mechanic_2.name)
       expect(page).to have_content("Experience: #{@mechanic_2.years_experience}")
       expect(page).to have_content(@ride_1.name)
@@ -45,6 +46,32 @@ RSpec.describe "Mechanic Show Page" do
       expect(page).to_not have_content(@ride_2.name)
       expect(page).to_not have_content(@ride_4.name)
       expect(page).to_not have_content(@mechanic_3.name)
+    end
+  end
+
+  describe "Show Page Ride Form" do
+    # User Story 2
+    it "displays a form to add a ride (via ID) to that mechanic" do
+      visit mechanic_path(@mechanic_2)
+
+      expect(page).to have_content(@ride_1.name)
+      expect(page).to have_content(@ride_3.name)
+      expect(page).to_not have_content(@ride_2.name)
+      expect(page).to_not have_content(@ride_4.name)
+
+      expect(page).to have_content("Add a ride to workload:")
+
+      fill_in("Ride ID", with: "#{@ride_2.id}")
+      click_button("Submit")
+
+      expect(page).to have_current_path(mechanic_path(@mechanic_2))
+      expect(page).to have_content(@ride_2.name)
+
+      fill_in("Ride ID", with: "#{@ride_4.id}")
+      click_button("Submit")
+
+      expect(page).to have_current_path(mechanic_path(@mechanic_2))
+      expect(page).to have_content(@ride_4.name)
     end
   end
 end
