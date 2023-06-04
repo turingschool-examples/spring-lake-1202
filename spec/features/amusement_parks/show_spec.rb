@@ -1,10 +1,6 @@
 require "rails_helper"
 
-RSpec.describe AmusementPark, type: :model do
-  describe "relationships" do
-    it { should have_many(:rides) }
-  end
-
+RSpec.describe 'Amusement Park Show Page' do
   before :each do
     @mechanic_1 = Mechanic.create!(name: "Kara Smith", years_experience: 11)
     @mechanic_2 = Mechanic.create!(name: "John Doe", years_experience: 4)
@@ -24,12 +20,19 @@ RSpec.describe AmusementPark, type: :model do
     @mechanic_ride_4 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_4.id)
     @mechanic_ride_5 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_5.id)
   end
+  describe "As a visitor" do
+    it "I see the name and price of admissions for that amusement park" do
+      visit "/amusement_parks/#{@park_1.id}"
 
-  describe "instance methods" do
-    describe "#unique_mechanics" do
-      it "returns a list of unique mechanics that work at the park" do
-        expect(@park_1.unique_mechanics).to eq([@mechanic_2.name, @mechanic_1.name])
-      end
+      expect(page).to have_content(@park_1.name)
+      expect(page).to have_content(@park_1.admission_cost)
+    end
+
+    it "I see the names of all the mechanics that work on rides at this park" do
+      visit "/amusement_parks/#{@park_1.id}"
+      save_and_open_page
+      expect(page).to have_content(@mechanic_1.name)
+      expect(page).to have_content(@mechanic_2.name)
     end
   end
 end
