@@ -47,9 +47,17 @@ RSpec.describe "/mechanics/:id" do
           expect(page).to_not have_content("Ride Name: #{ride_2.name}")
           expect(page).to_not have_content("Name: #{mechanic_1.name}")
         end
-
-
       end
+
+      # Story 2 - Add a Ride to a Mechanic (link)
+
+      it "has a link to add a ride to the workload" do
+        visit "/mechanics/#{mechanic_1.id}"
+        # within "#mec-rides-#{mechanic_1.id}" do
+        expect(page).to have_link("Add Ride To Workload")
+        # end
+      end
+
     end
   end
 end

@@ -1,0 +1,14 @@
+<h3>Create New Ride Gig Hopefully</h3>
+
+<%= form_with url: "/mechanics/#{@mechanic.id}", method: :post, local: true do |f| %>
+  <%= f.label :name, "Ride Name:" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :thrill_rating, "Thrill Rating:" %>
+  <%= f.number_field :thrill_rating %>
+
+  <%= f.label :open, "Open:" %>
+  <%= f.check_box :open %>
+
+  <%= f.submit "Submit Ride" %>
+<% end %>
