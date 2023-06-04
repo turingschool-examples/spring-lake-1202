@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   post "/ride_mechanics", to: "ride_mechanics#create"
 
+  get "/amusement_parks/:id", to: "amusement_parks#show"
+
 end
