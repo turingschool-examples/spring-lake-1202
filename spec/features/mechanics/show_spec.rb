@@ -10,6 +10,7 @@ RSpec.describe "/mechanics/:id, mechanics show page" do
     @ferris = @six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 7, open: false)
 
     @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
+    @toys = @universal.rides.create!(name: 'Toy Story', thrill_rating: 3, open: false)
 
     @suzie = Mechanic.create!(name: 'Suzie Smalls', years_experience: 2)
     @kara = Mechanic.create!(name: 'Kara Smith', years_experience: 11)
@@ -25,15 +26,34 @@ RSpec.describe "/mechanics/:id, mechanics show page" do
     it "displays name, yrs experience, and names of rides worked on" do
       visit "/mechanics/#{@suzie.id}/"
 
-      expect(page).to have_content("Name: #{@suzie.name}")
-      expect(page).to_not have_content("Name: #{@kara.name}")
-      expect(page).to have_content("Yrs Experience: #{@suzie.years_experience}")
-      expect(page).to have_content("Rides:")
-      save_and_open_page
+      expect(page).to have_content("Mechanic: #{@suzie.name}")
+      expect(page).to_not have_content("Mechanic: #{@kara.name}")
+      expect(page).to have_content("Years of Experience: #{@suzie.years_experience}")
+      expect(page).to have_content("Current rides they're working on:")
+
       within "#rides-#{@suzie.id}" do
-        expect(page).to have_content(@hurler.name)
         expect(page).to have_content(@ferris.name)
+        expect(page).to have_content(@hurler.name)
         expect(page).to_not have_content(@scrambler.name)
+      end
+    end
+
+    it "shows a form to add a ride to this mechanic" do
+      visit "/mechanics/#{@kara.id}/"
+
+      expect(page).to have_content("Add a ride to Workload:")
+
+      fill_in "Ride Id:", with: "#{@toys.id}"
+      click_button "Submit"
+
+      expect(current_path).to eq("/mechanics/#{@kara.id}")
+
+      within "#rides-#{@kara.id}" do
+        expect(page).to have_content(@ferris.name)
+        expect(page).to have_content(@scrambler.name)
+        expect(page).to have_content(@toys.name)
+        expect(page).to_not have_content(@hurler.name)
+        expect(page).to_not have_content(@jaws.name)
       end
     end
   end
