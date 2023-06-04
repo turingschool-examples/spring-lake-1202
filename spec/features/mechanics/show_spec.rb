@@ -12,14 +12,11 @@ RSpec.describe "mechanics show page", type: :feature do
     @ride_3 = @amusement_park_1.rides.create!(name: "Fahrenheit", thrill_rating: 4, open: false)
     @ride_4 = @amusement_park_1.rides.create!(name: "The Kiss Raise", thrill_rating: 1, open: false)
 
-    @mechanic_ride_1 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_1.id)
-    @mechanic_ride_2 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_2.id)
-    @mechanic_ride_3 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_3.id)
+    @mechanic_1_ride_1 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_1.id)
+    @mechanic_1_ride_2 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_2.id)
+    @mechanic_1_ride_3 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_3.id)
 
-    @mechanic_ride_5 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_1.id)
-    @mechanic_ride_6 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_2.id)
-    @mechanic_ride_7 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_3.id)
-    @mechanic_ride_8 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_4.id)
+    @mechanic_2_ride_4 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_4.id)
   end
 
   describe "user sees mechanic's details" do
@@ -38,6 +35,29 @@ RSpec.describe "mechanics show page", type: :feature do
           expect(page).to have_content(@ride_2.name)
           expect(page).to have_content(@ride_3.name)
           expect(page).to_not have_content(@ride_4.name)
+        end
+      end
+
+      it "has a form to add rides to the mechanic's workload" do
+        visit mechanic_path(@mechanic_2)
+
+        within "#mechanic-rides" do
+          expect(page).to have_content(@ride_4.name)
+          expect(page).to_not have_content(@ride_1.name)
+        end
+
+        expect(page).to have_content("Add a ride to workload:")
+
+        fill_in(:ride_id, with: @ride_1.id)
+        click_button("Submit")
+
+        expect(current_path).to eq(mechanic_path(@mechanic_2))
+
+        @mechanic_2.reload
+
+        within "#mechanic-rides" do
+          expect(page).to have_content(@ride_1.name)
+          expect(page).to have_content(@ride_4.name)
         end
       end
     end
