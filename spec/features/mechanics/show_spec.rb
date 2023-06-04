@@ -26,3 +26,4 @@ RSpec.describe "Mechanic Show Page" do
       expect(page).to_not have_content(mechanic_2.rides[0].name)
     end
   end
+end
