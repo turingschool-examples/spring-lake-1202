@@ -5,9 +5,9 @@ RSpec.describe "Amusement Parks Show Page" do
     @amusement_park_1 = AmusementPark.create!(name: "Fantasy Land", admission_cost: 20)
     @amusement_park_2 = AmusementPark.create!(name: "Disney World", admission_cost: 400)
 
-    @mechanic_1 = Mechanic.create!(name: "Tom", years_experience: 5)
+    @mechanic_1 = Mechanic.create!(name: "Tom", years_experience: 4)
     @mechanic_2 = Mechanic.create!(name: "Billy", years_experience: 1)
-    @mechanic_3 = Mechanic.create!(name: "Mike", years_experience: 14)
+    @mechanic_3 = Mechanic.create!(name: "Mike", years_experience: 10)
     @mechanic_4 = Mechanic.create!(name: "Bob", years_experience: 3)
     @mechanic_5 = Mechanic.create!(name: "Kelly", years_experience: 7)
 
@@ -33,6 +33,7 @@ RSpec.describe "Amusement Parks Show Page" do
   end
 
   describe "Amusement Parks Display" do
+    # User Story 3
     it "displays the name and price of admission for that amusement park" do
       visit amusement_park_path(@amusement_park_1)
 
