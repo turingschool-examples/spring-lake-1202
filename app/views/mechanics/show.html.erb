@@ -1,0 +1,21 @@
+<h1>Mechanic Show Page</h1>
+
+<h2>Mechanic: <%= @mechanic.name %> </h2>
+<h3>Years of Experience: <%= @mechanic.years_of_experience %> </h3>
+<div id=mechanic-rides><h4>Current rides they're working on:</h4>
+  <ul>
+    <% @mechanic.rides.each do |ride| %>
+      <li><%= ride.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+<h4>Add a ride to workload:</h4>
+<%= form_with url: mechanic_rides_path, method: :post, data: { turbo: false } do |f| %>
+  <%= f.label :ride_id %>
+  <%= f.number_field :ride_id %>
+  <br>
+  <%= f.hidden_field :mechanic_id, value: @mechanic.id %>
+  <%= f.submit "Submit" %>
+<% end %>
+
