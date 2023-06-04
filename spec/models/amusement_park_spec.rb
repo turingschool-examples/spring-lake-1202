@@ -10,6 +10,9 @@ RSpec.describe AmusementPark, type: :model do
     before(:each) do
       @six_flags = AmusementPark.create!(name: 'Six Flags', admission_cost: 75)
       @universal = AmusementPark.create!(name: 'Universal Studios', admission_cost: 80)
+      @fun = AmusementPark.create!(name: 'Fun World', admission_cost: 1800)
+
+      @scary = @fun.rides.create!(name: 'Super Scary', thrill_rating: 17, open: true)
 
       @hurler = @six_flags.rides.create!(name: 'The Hurler', thrill_rating: 7, open: true)
       @scrambler = @six_flags.rides.create!(name: 'The Scrambler', thrill_rating: 4, open: true)
@@ -37,6 +40,7 @@ RSpec.describe AmusementPark, type: :model do
       expect(@universal.list_mechanics).to eq([@kara, @bob])
       expect(@universal.list_mechanics).to_not eq([@kara, @bob, @bob])
       expect(@six_flags.list_mechanics).to eq([@suzie, @kara])
+      expect(@fun.list_mechanics).to eq([])
     end
   end
 end
