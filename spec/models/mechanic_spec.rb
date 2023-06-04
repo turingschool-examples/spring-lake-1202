@@ -20,7 +20,7 @@ RSpec.describe Mechanic, type: :model do
         mechanic3 = ride3.mechanics.create!(name: "Jolene Dog", years_experience: 4)
         mechanic4 = ride4.mechanics.create!(name: "Betty White", years_experience: 15)
 
-        expect(mechanic1.rides(mechanic1.name)).to eq([ride1])
+        expect(mechanic1.all_rides(mechanic1.name)).to eq([ride1])
       end
     end
   end
