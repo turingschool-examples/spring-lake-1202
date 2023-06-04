@@ -27,11 +27,18 @@ RSpec.describe "Amusement Park Show Page" do
       visit "/amusement_parks/#{@six_flags.id}"
 save_and_open_page
 
-      within("#park-info") do
+      within("#park-info-#{@six_flags.id}") do
         expect(page).to have_content("Name: #{@six_flags.name}")
         expect(page).to have_content("Admission Cost: #{@six_flags.admission_cost}")
         expect(page).to_not have_content(@universal.name)
         end
+
+      within("#mechanic-names-#{@six_flags.id}") do
+        expect(page).to have_content("List of Mechanics")
+        expect(page).to have_content(@mechanic_1.name)
+        expect(page).to have_content(@mechanic_2.name)
+        expect(page).to_not have_content(@mechanic_3.name)
       end
     end
   end
+end

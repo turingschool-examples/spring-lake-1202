@@ -1,8 +1,13 @@
 <h1> Amusement Park Show Page </h1>
 
-<section id="park-info">
+<section id="park-info-<%= @amusement_park.id %>">
   <p>Name: <%= @amusement_park.name %></p>
   <p>Admission Cost: <%= @amusement_park.admission_cost %></p>
 </section>
 
-
+<section id="mechanic-names-<%= @amusement_park.id %>">
+<h4> List of Mechanics </h4>
+  <% @amusement_park.lists_mechanics.each do |mechanic| %>
+    <p><%= mechanic.name %></p>
+  <% end %>
+</section>
