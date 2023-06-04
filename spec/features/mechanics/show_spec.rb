@@ -26,8 +26,7 @@ RSpec.describe "Mechanic Show Page" do
 
   describe "Show Page Display" do
     it "displays the mechanic's name, years experience, and the names of rides they work on" do
-      visit "/mechanics/#{@mechanic_1.id}"
-      # visit mechanic_path(@mechanic_1)
+      visit mechanic_path(@mechanic_1)
 
       expect(page).to have_content(@mechanic_1.name)
       expect(page).to have_content("Experience: #{@mechanic_1.years_experience}")
@@ -37,8 +36,7 @@ RSpec.describe "Mechanic Show Page" do
       expect(page).to have_content(@ride_4.name)
       expect(page).to_not have_content(@mechanic_2.name)
 
-      visit "/mechanics/#{@mechanic_2.id}"
-      # visit mechanic_path(@mechanic_2)
+      visit mechanic_path(@mechanic_2)
 
       expect(page).to have_content(@mechanic_2.name)
       expect(page).to have_content("Experience: #{@mechanic_2.years_experience}")
