@@ -50,14 +50,13 @@ RSpec.describe "/mechanics/:id" do
       expect(current_path).to eq("/mechanics/#{mechanic_1.id}")
 
       within ".mechanic_#{mechanic_1.id}_rides" do
-      expect(page).to have_content("Rides Working On:")
-      expect(page).to have_content("#{ride_1.name}")
-      expect(page).to have_content("#{ride_2.name}")
-      expect(page).to have_content("#{ride_3.name}")
+        expect(page).to have_content("Rides Working On:")
+        expect(page).to have_content("#{ride_1.name}")
+        expect(page).to have_content("#{ride_2.name}")
+        expect(page).to have_content("#{ride_3.name}")
 
-      expect(page).to have_content("#{ride_4.name}")
-      save_and_open_page
-    end
+        expect(page).to have_content("#{ride_4.name}")
+      end
     end
   end
 end
