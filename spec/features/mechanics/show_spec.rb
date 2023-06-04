@@ -44,10 +44,12 @@ RSpec.describe "Mechanic Show Page" do
     it "I fill in that field with an id of an existing ride and click Submit I’m taken back to that mechanic's show page And I see the name of that newly added ride on this mechanic's show page" do
       visit "/mechanics/#{@mechanic_1.id}"
       
-      expect(page).to have_content("Add A Ride")
-      fill_in "Ride ID", with: "#{@ferris.id}"
-      click_on "Submit"
-      save_and_open_page 
+      within("#add-ride-#{@mechanic_1.id}") do
+        expect(page).to have_content("Add A Ride")
+        fill_in "Ride ID", with: "#{@ferris.id}"
+        click_on "Submit"
+      end
+    
 
       expect(current_path).to eq("/mechanics/#{@mechanic_1.id}")
       expect(page).to have_content(@ferris.name)

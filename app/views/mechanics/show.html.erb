@@ -13,12 +13,14 @@
   <% end %>
 </section>
 
-<h4> Add A Ride </h4>
-   <%= form_with url: "/ride_mechanics", method: :post, local: true do |form| %>
-    <%= form.label :ride_id, "Ride ID" %>
-    <%= form.text_field :ride_id %>
-    <%= form.hidden_field :mechanic_id, value: @mechanic.id %>
-    <%= form.submit 'Submit' %>
-  <% end %>
+<section id="add-ride-<%= @mechanic.id %>">
+  <h4> Add A Ride </h4>
+    <%= form_with url: "/ride_mechanics", method: :post, local: true do |form| %>
+      <%= form.label :ride_id, "Ride ID" %>
+      <%= form.text_field :ride_id %>
+      <%= form.hidden_field :mechanic_id, value: @mechanic.id %>
+      <%= form.submit 'Submit' %>
+    <% end %>
+  </section>
 
 
