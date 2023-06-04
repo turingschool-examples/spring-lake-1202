@@ -38,7 +38,7 @@ RSpec.describe "/mechanics/:id, mechanics show page" do
       end
     end
 
-    it "shows a form to add a ride to this mechanic" do
+    it "shows a form to add a ride to this mechanic - US2" do
       visit "/mechanics/#{@kara.id}/"
 
       expect(page).to have_content("Add a ride to Workload:")
