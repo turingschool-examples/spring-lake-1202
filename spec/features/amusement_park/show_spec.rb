@@ -17,7 +17,7 @@ RSpec.describe "the amusement park show page" do
     visit "/amusement_parks/#{ap1.id}"
 
     expect(page).to have_content("Park Name: #{ap1.name}")
-    expect(page).to have_content("Park Admission: #{ap1.admission_cost}")
+    expect(page).to have_content("Park Admission: $#{ap1.admission_cost}")
     expect(page).to have_content(mechanic1.name)
     expect(page).to have_content(mechanic2.name)
     expect(page).to have_content(mechanic3.name)
