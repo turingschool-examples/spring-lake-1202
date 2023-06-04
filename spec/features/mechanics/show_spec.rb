@@ -25,8 +25,8 @@ RSpec.describe "mechanics show page", type: :feature do
         visit mechanic_path(@mechanic_1)
 
         expect(page).to have_content("Mechanic: #{@mechanic_1.name}")
-        expect(page).to_not have_content("Mechanic: #{@mechanic_2.name}")
         expect(page).to have_content("Years of Experience: #{@mechanic_1.years_of_experience}")
+        expect(page).to_not have_content("Mechanic: #{@mechanic_2.name}")
         expect(page).to_not have_content("Years of Experience: #{@mechanic_2.years_of_experience}")
 
         within "#mechanic-rides" do
@@ -35,6 +35,23 @@ RSpec.describe "mechanics show page", type: :feature do
           expect(page).to have_content(@ride_2.name)
           expect(page).to have_content(@ride_3.name)
           expect(page).to_not have_content(@ride_4.name)
+        end
+      end
+
+      it "displays mechanic info and rides working on" do
+        visit mechanic_path(@mechanic_2)
+
+        expect(page).to have_content("Mechanic: #{@mechanic_2.name}")
+        expect(page).to have_content("Years of Experience: #{@mechanic_2.years_of_experience}")
+        expect(page).to_not have_content("Mechanic: #{@mechanic_1.name}")
+        expect(page).to_not have_content("Years of Experience: #{@mechanic_1.years_of_experience}")
+
+        within "#mechanic-rides" do
+          expect(page).to have_content("Current rides they're working on")
+          expect(page).to have_content(@ride_4.name)
+          expect(page).to_not have_content(@ride_1.name)
+          expect(page).to_not have_content(@ride_2.name)
+          expect(page).to_not have_content(@ride_3.name)
         end
       end
 
@@ -57,6 +74,33 @@ RSpec.describe "mechanics show page", type: :feature do
 
         within "#mechanic-rides" do
           expect(page).to have_content(@ride_1.name)
+          expect(page).to have_content(@ride_4.name)
+        end
+      end
+
+      it "has a form to add rides to the mechanic's workload" do
+        visit mechanic_path(@mechanic_1)
+
+        within "#mechanic-rides" do
+          expect(page).to have_content(@ride_1.name)
+          expect(page).to have_content(@ride_2.name)
+          expect(page).to have_content(@ride_3.name)
+          expect(page).to_not have_content(@ride_4.name)
+        end
+
+        expect(page).to have_content("Add a ride to workload:")
+
+        fill_in(:ride_id, with: @ride_4.id)
+        click_button("Submit")
+
+        expect(current_path).to eq(mechanic_path(@mechanic_1))
+
+        @mechanic_2.reload
+
+        within "#mechanic-rides" do
+          expect(page).to have_content(@ride_1.name)
+          expect(page).to have_content(@ride_2.name)
+          expect(page).to have_content(@ride_3.name)
           expect(page).to have_content(@ride_4.name)
         end
       end
