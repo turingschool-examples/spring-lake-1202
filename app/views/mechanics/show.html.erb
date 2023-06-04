@@ -1,5 +1,13 @@
 <p><%= @mechanic.name %></p>
 <p><%= @mechanic.years_experience %></p>
-<p>Rides their working on: </b></p><% @mechanic.rides.each do |ride| %>
+<h2>Rides their working on: </b></h2><% @mechanic.rides.each do |ride| %>
   <p><%= ride.name %></p>
 <% end %>
+<h3>Add a ride to workload:</h3>
+<%  %>
+  <%= form_with model: @mechanic_ride, url: "/mechanic_rides", method: :post, local: true do |form| %>
+    <%= form.label :ride_id, "Enter Ride ID Here" %>
+    <%= form.text_field :ride_id %>
+    <%= form.hidden_field :mechanic_id, value: @mechanic.id %>
+    <%= form.submit "Submit" %>
+  <% end %>
