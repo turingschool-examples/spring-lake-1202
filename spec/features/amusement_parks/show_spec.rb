@@ -13,15 +13,18 @@ RSpec.describe "Amusement Park Show Page" do
     @mech_rides = MechanicRide.create!(ride_id: @ride_2.id, mechanic_id: @mechanic_1.id)
     @mech_rides = MechanicRide.create!(ride_id: @ride_3.id, mechanic_id: @mechanic_2.id)
   end
+
   it "has amusement park info" do 
     # visit "/amusement_parks/#{@six_flags.id}"
     visit amusement_park_path(@six_flags)
+    
     expect(page).to have_content("Name: #{@six_flags.name}")
     expect(page).to have_content("Admission Cost: #{@six_flags.admission_cost}")
   end
 
   it "has names of mechanics working on rides in the park" do 
     visit amusement_park_path(@six_flags)
+
     within "#mechs" do 
       expect(page).to have_content(@mechanic_1.name)
       expect(page).to have_content(@mechanic_2.name)
