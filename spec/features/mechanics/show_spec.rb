@@ -29,7 +29,7 @@ RSpec.describe "/mechanics/:id, mechanics show page" do
       expect(page).to_not have_content("Name: #{@kara.name}")
       expect(page).to have_content("Yrs Experience: #{@suzie.years_experience}")
       expect(page).to have_content("Rides:")
-
+      save_and_open_page
       within "#rides-#{@suzie.id}" do
         expect(page).to have_content(@ride_mech_1)
         expect(page).to have_content(@ride_mech_2)
