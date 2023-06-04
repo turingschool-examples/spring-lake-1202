@@ -34,13 +34,13 @@ RSpec.describe "Amusement Parks Show Page" do
 
   describe "Amusement Parks Display" do
     it "displays the name and price of admission for that amusement park" do
-      visit "/amusement_parks/#{@amusement_park_1.id}"
+      visit amusement_park_path(@amusement_park_1)
 
       expect(page).to have_content(@amusement_park_1.name)
       expect(page).to_not have_content(@amusement_park_2.name)
       expect(page).to have_content("Admission Price: #{@amusement_park_1.admission_cost}")
 
-      visit "/amusement_parks/#{@amusement_park_2.id}"
+      visit amusement_park_path(@amusement_park_2)
 
       expect(page).to have_content(@amusement_park_2.name)
       expect(page).to_not have_content(@amusement_park_1.name)
@@ -48,7 +48,7 @@ RSpec.describe "Amusement Parks Show Page" do
     end
 
     it "displays the names of all UNIQUE mechanics that are working on that park's rides" do
-      visit "/amusement_parks/#{@amusement_park_1.id}"
+      visit amusement_park_path(@amusement_park_1)
       
       expect(page).to have_content(@mechanic_1.name)
       expect(page).to have_content(@mechanic_2.name)
@@ -56,7 +56,7 @@ RSpec.describe "Amusement Parks Show Page" do
       expect(page).to_not have_content(@mechanic_4.name)
       expect(page).to_not have_content(@mechanic_5.name)
 
-      visit "/amusement_parks/#{@amusement_park_2.id}"
+      visit amusement_park_path(@amusement_park_2)
       
       expect(page).to_not have_content(@mechanic_1.name)
       expect(page).to_not have_content(@mechanic_2.name)
