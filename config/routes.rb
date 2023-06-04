@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   get "/mechanics/:id", to: "mechanics#show"
   post "/mechanics/:id", to: "mechanics#create"
 
-  get "/amusement_parks/:id", to: "amusement_parks#show"
+  # get "/amusement_parks/:id", to: "amusement_parks#show"
+
+  resources :amusement_parks, only: [:show]
 end
+

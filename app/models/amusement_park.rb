@@ -6,6 +6,7 @@ class AmusementPark < ApplicationRecord
   def mechanics_on_rides
     Mechanic.joins(:rides)
             .where(rides: { amusement_park_id: id})
+            .distinct
             .pluck(:name)
   end
 end
