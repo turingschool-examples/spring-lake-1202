@@ -32,6 +32,18 @@ RSpec.describe 'Mechanic Show Page' do
         expect(page).to have_content(@ride_2.name)
         expect(page).to have_content(@ride_3.name)
       end
+
+      it "shows a form to add a ride to their workload" do
+        visit "/mechanics/#{@mechanic_1.id}"
+
+        expect(page).to have_content("Add a ride to workload:")
+        expect(page).to have_field("Ride ID")
+
+        fill_in "Ride ID", with: @ride_4.id
+        click_button "Submit"
+
+        expect(current_path).to eq("/mechanics/#{@mechanic_1.id}")
+      end
     end
   end
 end
