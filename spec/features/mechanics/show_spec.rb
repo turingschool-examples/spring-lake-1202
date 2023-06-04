@@ -69,7 +69,7 @@ RSpec.describe "Mechanic Show Page" do
 
       fill_in("Ride", with: "#{@ride_4.id}")
       click_button("Submit")
-      save_and_open_page
+
       expect(page).to have_current_path(mechanic_path(@mechanic_2))
       expect(page).to have_content(@ride_4.name)
     end
