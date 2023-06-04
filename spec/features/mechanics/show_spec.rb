@@ -58,18 +58,18 @@ RSpec.describe "Mechanic Show Page" do
       expect(page).to have_content(@ride_3.name)
       expect(page).to_not have_content(@ride_2.name)
       expect(page).to_not have_content(@ride_4.name)
-
+      
       expect(page).to have_content("Add a ride to workload:")
 
-      fill_in("Ride ID", with: "#{@ride_2.id}")
+      fill_in("Ride", with: "#{@ride_2.id}")
       click_button("Submit")
-
+      
       expect(page).to have_current_path(mechanic_path(@mechanic_2))
       expect(page).to have_content(@ride_2.name)
 
-      fill_in("Ride ID", with: "#{@ride_4.id}")
+      fill_in("Ride", with: "#{@ride_4.id}")
       click_button("Submit")
-
+      save_and_open_page
       expect(page).to have_current_path(mechanic_path(@mechanic_2))
       expect(page).to have_content(@ride_4.name)
     end
