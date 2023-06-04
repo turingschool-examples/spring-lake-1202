@@ -55,6 +55,12 @@ We are creating an application to track the maintenance of amusement park rides 
 * Mechanics can work on many Rides
 * Rides can have many Mechanics working on them
 
+
+amusement parks have many rides
+rides belong to amusement park
+rides have many mechanics
+mechanics have many rides
+
 Some of the initial migrations and model set up has been done for you.
 
 ## User Stories
