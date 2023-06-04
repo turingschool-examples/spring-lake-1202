@@ -6,3 +6,8 @@
   <% @mechanics.each do |mechanic| %>
     <%= mechanic.name %><br>
   <% end %>
+
+  <h3>Rides:</h3> 
+  <% @rides.each do |ride| %>
+    <%= ride.name %> <%= ride.average_experience %><br> 
+  <% end %>
