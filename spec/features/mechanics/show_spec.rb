@@ -37,7 +37,7 @@ RSpec.describe "Mechanic Show Page" do
       expect(page).to_not have_content(@mechanic_2.name)
 
       visit mechanic_path(@mechanic_2)
-
+      
       expect(page).to have_content(@mechanic_2.name)
       expect(page).to have_content("Experience: #{@mechanic_2.years_experience}")
       expect(page).to have_content(@ride_1.name)
