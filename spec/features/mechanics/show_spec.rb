@@ -13,7 +13,7 @@ RSpec.describe "mechanics show page", type: :feature do
     @mechanic_ride_2 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_2.id)
   end
 
-  describe "user sees mechanix details" do
+  describe "user sees mechanic's details" do
     describe "they visit mechanic show page" do
       it "displays mechanic info and rides working on" do
         visit mechanic_path(@mechanic_1)
