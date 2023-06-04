@@ -23,4 +23,25 @@ RSpec.describe "the mechanic show page" do
     expect(page).to_not have_content(mechanic3.years_experience)
     expect(page).to_not have_content(ride2.name)
   end
+
+#   Story 2 - Add a Ride to a Mechanic
+  it "I see a form to add a ride to their workload" do 
+    ap1 = AmusementPark.create!(name: "Six Flags", admission_cost: 75)
+    ap2 = AmusementPark.create!(name: "Disneyland", admission_cost: 100)
+    ride1 = ap1.rides.create!(name: "The Hurler", thrill_rating: 7, open: false)
+    ride2 = ap1.rides.create!(name: "Teacups", thrill_rating: 1, open: true)
+    ride3 = ap1.rides.create!(name: "Race Cars", thrill_rating: 5, open: true)
+    mechanic1 = ride1.mechanics.create!(name: "Michelle Obama", years_experience: 11)
+    mechanic2 = ride2.mechanics.create!(name: "Simon G", years_experience: 3)
+
+    visit "/mechanics/#{mechanic1.id}"
+
+    expect(page).to_not have_content(ride3.name)
+    fill_in "add_ride", with: "#{ride3.id}"
+    click_on "Submit"
+    visit "/mechanics/#{mechanic1.id}"
+
+    expect(current_path).to eq("/mechanics/#{mechanic1.id}")
+    expect(page).to have_content(ride3.name)
+  end
 end
