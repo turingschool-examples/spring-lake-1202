@@ -1,0 +1,7 @@
+<h1><%= "#{@park.name}" %></h1>
+<p><%= "Price of Admission: #{@park.admission_cost}" %></p>
+<div class=<%= "park_#{@park.id}_mechanics" %>>
+<% @park.uniq_mechanics.each do |mech| %>
+  <%= "#{mech.name}" %>
+<% end %>
+</div>

@@ -16,7 +16,7 @@ RSpec.describe "/amusement_parks/:id" do
     let!(:ride_4) { park.rides.create!(name: "Out of Service", thrill_rating: 10, open: true) }
     let!(:ride_mechanic_4) { RideMechanic.create!(ride: ride_4, mechanic: mechanic_2)}
 
-    let!(:park_2) { AmusementPark.create!(name: "Wally World", admission_cost: 50)}
+    let!(:park_2) { AmusementPark.create!(name: "Coolest Place", admission_cost: 10000)}
     let!(:mechanic_3) { Mechanic.create!(name: "Busta Rhymes", years_experience: 42) }
     let!(:ride_5) { park_2.rides.create!(name: "Spin Spin Spin", thrill_rating: 10, open: true) }    
     let!(:ride_mechanic_5) { RideMechanic.create!(ride: ride_5, mechanic: mechanic_3)}
