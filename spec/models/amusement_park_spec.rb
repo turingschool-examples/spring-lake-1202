@@ -6,6 +6,7 @@ RSpec.describe AmusementPark, type: :model do
   end
 
   describe "instance methods" do
+    
     describe "#all_mechanics" do 
       it "selects all of a park's mechanics" do
         ap1 = AmusementPark.create!(name: "Six Flags", admission_cost: 75)

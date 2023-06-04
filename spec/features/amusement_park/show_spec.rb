@@ -25,6 +25,7 @@ RSpec.describe "the amusement park show page" do
     expect(page).to_not have_content(ap2.name)
     expect(page).to_not have_content(mechanic4.name)
   end
+  
   # Extension - Amusement Park's Rides
   it "I see a list of all of the park's rides and the average experience of the mechanics working on the ride, ordered by the average experience of mechanics working on the ride" do 
     ap1 = AmusementPark.create!(name: "Six Flags", admission_cost: 75)
