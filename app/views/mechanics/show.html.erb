@@ -6,3 +6,11 @@
 <% @mechanic.rides.each do |ride| %>
   <p><%= ride.name %></p>
 <% end %>
+
+<p>Add Ride by ID</p>
+  <%= form_with url: "/mechanics/#{@mechanic.id}", method: :post, local: true do |form| %>
+    <%= form.label :ride_id %>
+    <%= form.number_field :ride_id %>
+    <%= form.hidden_field :mechanic_id, value: @mechanic.id %>
+    <%= form.submit "Add" %>
+  <% end %>
