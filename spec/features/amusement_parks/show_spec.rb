@@ -9,9 +9,14 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
     visit "/amusement_parks/#{@six_flags.id}"
     expect(page).to have_content("Name: #{@six_flags.name}")
     expect(page).to have_content("Admission Cost: #{@six_flags.admission_cost}")
+    expect(page).to_not have_content("Name: #{@disney.name}")
   end
-
+  
   xit "displays a unique list of mechanics working on this parks ride's " do
-
+    visit "/amusement_parks/#{@six_flags.id}"
+    expect(page).to have_content(@mech1.name)
+    expect(page).to have_content(@mech2.name)
+    expect(page).to_not have_content(@mech3.name)
+    expect(page).to_not have_content(@mech4.name)
   end
 end
