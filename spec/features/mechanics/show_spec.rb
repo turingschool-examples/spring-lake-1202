@@ -44,7 +44,7 @@ RSpec.describe "Mechanic Show Page" do
 
       fill_in(:ride_id, with: ride4.id)
       click_button("Submit")
-
+      
       expect(page).to have_content(ride4.name)
     end
   end
