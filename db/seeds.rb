@@ -16,3 +16,9 @@ Ride.destroy_all
 @ferris = @six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 7, open: false)
 
 @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
+@park_1 = AmusementPark.create!(name: "Fun land", admission_cost: 50)
+@ride_1 = @park_1.rides.create!(name: "Twister", thrill_rating: 8, open: true)
+@ride_2 = @park_1.rides.create!(name: "Snake", thrill_rating: 7, open: true)
+@mechanic_1 = Mechanic.create(name: "Bill", years_experience: 12, ride_id: @ride_1.id)
+RideMechanic.create!(ride: @ride_1, mechanic: @mechanic_1)
+RideMechanic.create!(ride: @ride_2, mechanic: @mechanic_1)
