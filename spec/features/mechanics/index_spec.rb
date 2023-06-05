@@ -8,7 +8,6 @@ RSpec.describe "index page" do
   end
   it "displays mechanics details" do
     visit "/mechanics/#{@mechanic_1.id}"
-    save_and_open_page
     expect(page).to have_content("Name: Bill")
     expect(page).to have_content("Experince: 12 years")
     expect(page).to have_content("Rides working on: Twister")
