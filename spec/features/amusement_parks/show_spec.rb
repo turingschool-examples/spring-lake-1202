@@ -18,6 +18,14 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
     expect(page).to have_content(@mech2.name)
     expect(page).to_not have_content(@mech3.name)
     expect(page).to_not have_content(@mech4.name)
-    save_and_open_page
+  end
+  
+  it "displays all of a park's rides" do
+    visit "/amusement_parks/#{@six_flags.id}"
+    expect(page).to have_content("Rides:")
+    expect(page).to have_content(@ride1.name)
+    expect(page).to have_content(@ride2.name)
+    expect(page).to_not have_content(@ride3.name)
+    expect(page).to_not have_content(@ride4.name)
   end
 end

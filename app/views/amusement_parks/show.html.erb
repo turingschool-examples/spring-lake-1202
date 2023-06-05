@@ -4,6 +4,15 @@
 <p>Admission Cost: <%= @park.admission_cost %></p>
 
 <h4>Mechanics at Work:</h4>
+<ul>
   <% @park.park_mechanics.each do |park_mechanic| %>
-    <p><%= park_mechanic.name %></p>
+    <li><%= park_mechanic.name %></li>
   <% end %>
+</ul>
+
+<h4>Rides:</h4>
+<ul>
+  <% @park.rides.each do |ride| %>
+    <li><%= ride.name %></li>
+  <% end %>
+</ul>
