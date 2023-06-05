@@ -15,14 +15,18 @@ RSpec.describe "the mechanics show page" do
   let!(:ride_mechanic_3) { RideMechanic.create!(ride: ride_3, mechanic: mechanic_2) }
 
   context "Mechanic 1" do
+    before(:each) do
+      visit "/mechanics/#{mechanic_1.id}"
+    end
+
     it "displays the mechanic's name, years of experience, and the names of all the rides they are working on" do
-      visit mechanic_path(mechanic_1)
+      within("#mechanic-info") do
+        expect(page).to have_content("Mechanic: #{mechanic_1.name}")
+        expect(page).to have_content("Years of Experience: #{mechanic_1.years_experience}")
+      end
 
-      expect(page).to have_content(mechanic_1.name)
-      expect(page).to have_content("Years of Experience: #{mechanic_1.years_experience}")
-
-      expect(page).to have_content("Rides they are working on:")
-      within("#rides") do
+      within("#current-rides") do
+        expect(page).to have_content("Current rides they're working on:")
         expect(page).to have_content(ride_1.name)
         expect(page).to have_content(ride_2.name)
       end
@@ -30,23 +34,65 @@ RSpec.describe "the mechanics show page" do
       expect(page).not_to have_content(mechanic_2.name)
       expect(page).not_to have_content(ride_3.name)
     end
+
+    it "displays a form to add a ride to their workload" do
+      within("#add-ride") do
+        expect(page).to have_content("Add a ride to workload:")
+        expect(page).to have_content("Ride Id:")
+        expect(page).to have_button("Submit")
+      end
+
+      fill_in "Ride Id:", with: ride_3.id
+      click_button "Submit"
+
+      expect(current_path).to eq("/mechanics/#{mechanic_1.id}")
+
+      within("#current-rides") do
+        expect(page).to have_content(ride_1.name)
+        expect(page).to have_content(ride_2.name)
+        expect(page).to have_content(ride_3.name)
+      end
+    end
   end
 
   context "Mechanic 2" do
+    before(:each) do
+      visit "mechanics/#{mechanic_2.id}"
+    end
+
     it "displays the mechanic's name, years of experience, and the names of all the rides they are working on" do
-      visit mechanic_path(mechanic_2)
+      within("#mechanic-info") do
+        expect(page).to have_content("Mechanic: #{mechanic_2.name}")
+        expect(page).to have_content("Years of Experience: #{mechanic_2.years_experience}")
+      end
 
-      expect(page).to have_content(mechanic_2.name)
-      expect(page).to have_content("Years of Experience: #{mechanic_2.years_experience}")
-
-      expect(page).to have_content("Rides they are working on:")
-      within("#rides") do
+      within("#current-rides") do
+        expect(page).to have_content("Current rides they're working on:")
         expect(page).to have_content(ride_3.name)
       end
 
       expect(page).not_to have_content(mechanic_1.name)
       expect(page).not_to have_content(ride_1.name)
       expect(page).not_to have_content(ride_2.name)
+    end
+
+    it "displays a form to add a ride to their workload" do
+      within("#add-ride") do
+        expect(page).to have_content("Add a ride to workload:")
+        expect(page).to have_content("Ride Id:")
+        expect(page).to have_button("Submit")
+      end
+
+      fill_in "Ride Id:", with: ride_1.id
+      click_button "Submit"
+
+      expect(current_path).to eq("/mechanics/#{mechanic_2.id}")
+
+      within("#current-rides") do
+        expect(page).to have_content(ride_1.name)
+        expect(page).to have_content(ride_3.name)
+        expect(page).not_to have_content(ride_2.name)
+      end
     end
   end
 end

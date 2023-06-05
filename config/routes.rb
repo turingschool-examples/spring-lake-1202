@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :mechanics, only: [:show]
+  get "/mechanics/:id", to: "mechanics#show"
+  post "/mechanics/:id/", to: "ride_mechanics#create"
 end
