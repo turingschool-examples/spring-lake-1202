@@ -21,4 +21,4 @@ Ride.destroy_all
 @ride_2 = @park_1.rides.create!(name: "Snake", thrill_rating: 7, open: true)
 @mechanic_1 = Mechanic.create(name: "Bill", years_experience: 12, ride_id: @ride_1.id)
 RideMechanic.create!(ride: @ride_1, mechanic: @mechanic_1)
-RideMechanic.create!(ride: @ride_2, mechanic: @mechanic_1)
+

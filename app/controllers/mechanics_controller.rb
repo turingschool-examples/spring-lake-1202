@@ -6,11 +6,12 @@ class MechanicsController < ApplicationController
   def show
     @mechanic = Mechanic.find(params[:id])
   end
-  
+
   def update
     @mechanic = Mechanic.find(params[:id])
-    @Ride = Ride.find(params[:id])
-    @mechanic.ride.update(ride_params)
+    ride = Ride.find(params[:id])
+    @mechanic.rides = ride
+    @mechanic.save
     redirect_to "/mechanic/#{@mechanic.id}"
   end
 
