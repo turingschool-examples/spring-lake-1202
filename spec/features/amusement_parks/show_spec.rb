@@ -28,4 +28,9 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
     expect(page).to_not have_content(@ride3.name)
     expect(page).to_not have_content(@ride4.name)
   end
+  
+  it "displays average experience of mechanics on this ride" do
+    visit "/amusement_parks/#{@six_flags.id}"
+    expect(page).to have_content(25.5)
+  end
 end

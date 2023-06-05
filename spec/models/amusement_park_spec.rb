@@ -10,8 +10,8 @@ RSpec.describe AmusementPark, type: :model do
     it { should have_many(:mechanics).through(:ride_mechanics)}
   end
 
-  describe "class methods" do
-    describe ".park_mechanics" do
+  describe "instance methods" do
+    describe "#park_mechanics" do
       it "can create a unique list of mechanics working at this park" do
         expect(@disney.park_mechanics).to eq([@mech3, @mech4])
         expect(@six_flags.park_mechanics).to eq([@mech1, @mech2])
