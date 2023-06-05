@@ -13,6 +13,6 @@
 <h4>Rides:</h4>
 <ul>
   <% @park.rides.each do |ride| %>
-    <li><%= ride.name %>, Average Mechanic Experience <%= ride.avg_exp.round(1) %></li>
+    <li><%= ride.name %>, Average Mechanic Experience: <%= ride.avg_exp.round(1) %></li>
   <% end %>
 </ul>

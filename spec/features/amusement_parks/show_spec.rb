@@ -32,5 +32,6 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
   it "displays average experience of mechanics on this ride" do
     visit "/amusement_parks/#{@six_flags.id}"
     expect(page).to have_content(25.5)
+    # save_and_open_page
   end
 end
