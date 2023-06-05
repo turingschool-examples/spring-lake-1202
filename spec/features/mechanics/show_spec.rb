@@ -34,5 +34,18 @@ RSpec.describe "Mechanic Show Page" do
 
       expect(page).to_not have_content(ride4.name)
     end
+
+    it "Add a ride to a mechanic" do
+      visit "/mechanics/#{mechanic1.id}"
+
+      expect(page).to_not have_content(ride4.name)
+
+      expect(page).to have_content("Add ride to #{mechanic1.name} schedule")
+
+      fill_in(:ride_id, with: ride4.id)
+      click_button("Submit")
+
+      expect(page).to have_content(ride4.name)
+    end
   end
 end
