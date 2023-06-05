@@ -18,10 +18,10 @@ RSpec.describe "the mechanics show page" do
     it "displays the mechanic's name, years of experience, and the names of all the rides they are working on" do
       visit mechanic_path(mechanic_1)
 
-      expect(page).to have_content(mechanic_1.name)
+      expect(page).to have_content("Mechanic: #{mechanic_1.name}")
       expect(page).to have_content("Years of Experience: #{mechanic_1.years_experience}")
 
-      expect(page).to have_content("Rides they are working on:")
+      expect(page).to have_content("Current rides they're working on:")
       within("#rides") do
         expect(page).to have_content(ride_1.name)
         expect(page).to have_content(ride_2.name)
@@ -36,10 +36,10 @@ RSpec.describe "the mechanics show page" do
     it "displays the mechanic's name, years of experience, and the names of all the rides they are working on" do
       visit mechanic_path(mechanic_2)
 
-      expect(page).to have_content(mechanic_2.name)
+      expect(page).to have_content("Mechanic: #{mechanic_2.name}")
       expect(page).to have_content("Years of Experience: #{mechanic_2.years_experience}")
 
-      expect(page).to have_content("Rides they are working on:")
+      expect(page).to have_content("Current rides they're working on:")
       within("#rides") do
         expect(page).to have_content(ride_3.name)
       end
