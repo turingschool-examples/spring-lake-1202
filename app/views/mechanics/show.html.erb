@@ -2,11 +2,18 @@
 <p>Name: <%= @mechanic.name %></p>
 <p>Years of Experience: <%= @mechanic.years_experience %></p>
 
-<section id=rides>
-<h2>Rides Mechanic Works On:</h2>
-<ul>
-  <% @mechanic.rides.each do |ride| %>
-    <li><%= ride.name %></li>
-  <% end %>
-</ul>
+<section id="rides">
+  <h2>Rides Mechanic Works On:</h2>
+  <ul>
+    <% @mechanic.rides.each do |ride| %>
+      <li><%= ride.name %></li>
+    <% end %>
+  </ul>
 </section>
+
+<h2>Add a ride to their workload</h2>
+<%= form_with url: "/mechanics/#{@mechanic.id}", method: :patch, local: true do |form| %>
+  <%= form.label :ride_id, "Enter ride" %>
+  <%= form.text_field :ride_id %>
+  <%= form.submit "Add ride" %>
+<% end %>
