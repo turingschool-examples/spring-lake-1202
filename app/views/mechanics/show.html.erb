@@ -1,5 +1,18 @@
 Name: <%= @mechanic.name %><br>
 <p>
-  Experince: <%= @mechanic.years_experience %> years<br>
-  Rides working on: <%= @mechanic.rides_working_on %>
+  Experince: <%= @mechanic.years_experience %> years<br><br>
+  Rides working on: <% @mechanic.rides_working_on.each do |ride| %>
+    <p> <%= ride.name %> </p>
+  <% end %>
 <p>
+
+<p> Add Ride to Mechanic </p>
+<%= form_with url: "/mechanics/#{@mechanic.id}", method: :get, data: {turbo: false}, local: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :thrill_rating %>
+  <%= f.text_field :thrill_rating %>
+  <%= f.label :open %>
+  <%= f.text_field :open %>
+  <%= f.submit 'ADD Ride' %>
+<% end %>

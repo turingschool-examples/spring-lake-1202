@@ -4,6 +4,6 @@ class Mechanic < ApplicationRecord
   has_many :rides, through: :ride_mechanics
 
   def rides_working_on
-    self.rides.pluck(:name)
+    self.rides
   end
 end

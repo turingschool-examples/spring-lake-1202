@@ -16,6 +16,13 @@ RSpec.describe "index page" do
     expect(page).to have_content("Experince: 12 years")
     expect(page).to have_content("Rides working on: Twister")
   end
-  xit "displays form to add ride to mechanic" do
+
+  it "displays form to add ride to mechanic" do
+    visit "/mechanics/#{@mechanic_1.id}"
+    fill_in "Name", with: "Log Ride"
+    fill_in "thrill_rating", with: 6
+    fill_in "open", with: true
+    click_button("ADD Ride")
+    expect(page).to have_content("Log Ride")
   end
 end
