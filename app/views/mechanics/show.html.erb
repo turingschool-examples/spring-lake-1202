@@ -7,3 +7,13 @@
   <%= ride.name %>
 <% end %>
 </p>
+<br>
+<br>
+<h3> Add ride to <%= @mechanic.name %> schedule </h3>
+<%= form_with url: mechanic_rides_path, method: :post, local: :true do |f| %>
+  <%= f.hidden_field :mechnic_id, valueL @mechanic.id %>
+  <%= f.label :ride_id %>
+  <%= f.number_field :ride_id %>
+  <%= f.submit %>
+
+<% end %>
