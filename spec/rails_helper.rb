@@ -17,6 +17,7 @@ def test_data
   RideMechanic.create!(ride: @ride1, mechanic: @mech2)
 
   RideMechanic.create!(ride: @ride2, mechanic: @mech1)
+  RideMechanic.create!(ride: @ride2, mechanic: @mech2)
 
   RideMechanic.create!(ride: @ride3, mechanic: @mech3)
   

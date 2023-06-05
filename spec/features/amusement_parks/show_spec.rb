@@ -18,5 +18,6 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
     expect(page).to have_content(@mech2.name)
     expect(page).to_not have_content(@mech3.name)
     expect(page).to_not have_content(@mech4.name)
+    save_and_open_page
   end
 end
