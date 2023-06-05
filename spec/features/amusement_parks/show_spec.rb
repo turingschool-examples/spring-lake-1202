@@ -12,7 +12,7 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
     expect(page).to_not have_content("Name: #{@disney.name}")
   end
   
-  xit "displays a unique list of mechanics working on this parks ride's " do
+  it "displays a unique list of mechanics working on this parks ride's " do
     visit "/amusement_parks/#{@six_flags.id}"
     expect(page).to have_content(@mech1.name)
     expect(page).to have_content(@mech2.name)
