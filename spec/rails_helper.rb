@@ -1,3 +1,29 @@
+def test_data
+  @six_flags = AmusementPark.create!(name: 'Six Flags', admission_cost: 75)
+  @disney = AmusementPark.create!(name: 'Disney Land', admission_cost: 150)
+
+  @ride1 = @six_flags.rides.create!(name: 'The Hurler', thrill_rating: 7, open: false)
+  @ride2 = @six_flags.rides.create!(name: 'The Scrambler', thrill_rating: 5, open: false)
+
+  @ride3 = @disney.rides.create!(name: 'Ferris Wheel', thrill_rating: 1, open: false)
+  @ride4 = @disney.rides.create!(name: 'Tea Cups', thrill_rating: 2, open: false)
+
+  @mech1 = Mechanic.create!(name: 'Kara Smith', years_experience: 11)
+  @mech2 = Mechanic.create!(name: 'Jim Bob', years_experience: 40)
+  @mech3 = Mechanic.create!(name: 'Phil Philson', years_experience: 5)
+  @mech4 = Mechanic.create!(name: 'Tim Thomson', years_experience: 10)
+
+  RideMechanic.create!(ride: @ride1, mechanic: @mech1)
+  RideMechanic.create!(ride: @ride1, mechanic: @mech2)
+
+  RideMechanic.create!(ride: @ride2, mechanic: @mech1)
+
+  RideMechanic.create!(ride: @ride3, mechanic: @mech3)
+  
+  RideMechanic.create!(ride: @ride4, mechanic: @mech4)
+end
+
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
