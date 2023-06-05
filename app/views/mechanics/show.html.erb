@@ -7,7 +7,7 @@ Name: <%= @mechanic.name %><br>
 <p>
 
 <p> Add Ride to Mechanic </p>
-<%= form_with url: "/mechanics/#{@mechanic.id}", method: :get, data: {turbo: false}, local: true do |f| %>
+<%= form_with url: "/mechanics/#{@mechanic.id}", method: :patch, data: {turbo: false}, local: true do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :thrill_rating %>
