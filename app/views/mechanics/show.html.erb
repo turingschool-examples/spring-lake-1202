@@ -8,7 +8,7 @@
 <% end %>
 
 <p>Add Ride by ID</p>
-  <%= form_with url: "/mechanics/#{@mechanic.id}", method: :post, local: true do |form| %>
+  <%= form_with url: "/ride_mechanics", method: :post, local: true do |form| %>
     <%= form.label :ride_id %>
     <%= form.number_field :ride_id %>
     <%= form.hidden_field :mechanic_id, value: @mechanic.id %>
