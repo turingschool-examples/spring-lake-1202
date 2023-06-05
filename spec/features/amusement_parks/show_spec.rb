@@ -56,5 +56,6 @@ RSpec.describe "Amusement Park Show Page" do
       expect(page).to_not have_content(mechanic1.name)
       expect(page).to_not have_content(mechanic2.name)
     end
+
   end
 end
