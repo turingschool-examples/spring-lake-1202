@@ -39,9 +39,12 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
     visit "/amusement_parks/#{@six_flags.id}"
 
     expect(page).to have_content("Mechanics working on rides:")
-    expect(page).to have_content("Wolfie")
-    expect(page).to have_content("Maggie")
-    expect(page).to have_content("Ink Jet Printer")
-    expect(page).to have_content("Pirate")
+
+    within("#mechanics-working") do 
+      expect(page).to have_content("Wolfie")
+      expect(page).to have_content("Maggie")
+      expect(page).to have_content("Ink Jet Printer")
+      expect(page).to have_content("Pirate")
+    end
   end
 end
