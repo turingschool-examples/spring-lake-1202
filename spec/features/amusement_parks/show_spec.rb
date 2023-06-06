@@ -11,16 +11,17 @@ RSpec.describe 'Amusement Park Show Page' do
     @janet = @six_flags.mechanics.create!(name: "Janet Joplin", years_experience: 1)
     @jorge = @kingdom_come.mechanics.create!(name: "Jorge Manet", years_experience: 3)
 
-    @drop = @six_flags.rides.create!(name: 'The Drop', thrill_rating: 5, open: false)
-    @flight = @six_flags.rides.create!(name: 'In Flight', thrill_rating: 5, open: true)
-    @tea_cups = @six_flags.rides.create!(name: 'Tea Cups', thrill_rating: 5, open: false)
-    @half_pipe = @six_flags.rides.create!(name: 'Half Pipe', thrill_rating: 2, open: false)
+    @drop = @six_flags.rides.create!(name: 'The Drop', thrill_rating: 5, open: false) #21 years
+    @flight = @six_flags.rides.create!(name: 'In Flight', thrill_rating: 5, open: true) #12 years
+    @tea_cups = @six_flags.rides.create!(name: 'Tea Cups', thrill_rating: 5, open: false) #15.5 years
+    @half_pipe = @six_flags.rides.create!(name: 'Half Pipe', thrill_rating: 2, open: false) #30 years
     @turbinator = @kingdom_come.rides.create!(name: 'The Turbinator', thrill_rating: 1, open: true)
     
     RideMechanic.create!(ride_id: @drop.id, mechanic_id: @jelly.id)
     RideMechanic.create!(ride_id: @drop.id, mechanic_id: @josey.id)
     RideMechanic.create!(ride_id: @flight.id, mechanic_id: @jelly.id)
     RideMechanic.create!(ride_id: @tea_cups.id, mechanic_id: @janet.id)
+    RideMechanic.create!(ride_id: @tea_cups.id, mechanic_id: @josey.id)
     RideMechanic.create!(ride_id: @half_pipe.id, mechanic_id: @josey.id)
     RideMechanic.create!(ride_id: @turbinator.id, mechanic_id: @jorge.id)
   end
@@ -75,6 +76,18 @@ RSpec.describe 'Amusement Park Show Page' do
 
       within("#ride-#{@drop.id}") do 
         expect(page).to have_content("Mechanic Average Years Experience: 21")
+      end
+    end
+
+    it 'lists rides by average mechanic experience' do 
+      visit amusement_park_path(@six_flags) 
+      
+      within("#rides") do 
+        expect("#{@flight.name}").to appear_before("#{@tea_cups.name}")
+        expect("#{@tea_cups.name}").to appear_before("#{@drop.name}")
+        expect("#{@drop.name}").to appear_before("#{@half_pipe.name}")
+        expect("#{@half_pipe.name}").to_not appear_before("#{@drop.name}")
+        expect("#{@drop.name}").to_not appear_before("#{@tea_cups.name}")
       end
     end
   end
