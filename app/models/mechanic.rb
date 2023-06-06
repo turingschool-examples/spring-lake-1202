@@ -1,3 +1,3 @@
 class Mechanic < ApplicationRecord
-  has many :ride_mechanics
+  has_many :ride_mechanics
 end
