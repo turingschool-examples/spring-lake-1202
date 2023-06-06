@@ -11,7 +11,7 @@ RSpec.describe 'Mechanic Show Page' do
   end
   describe 'User Story 1' do 
     it 'displays attributes' do
-      visit "mechanics/#{@jelly.id}"
+      visit mechanic_path(@jelly)
       
       expect(page).to have_content(@jelly.name)
       expect(page).to have_content("Years of Experience: #{@jelly.years_experience}")
@@ -24,7 +24,7 @@ RSpec.describe 'Mechanic Show Page' do
   
   describe 'User Story 2' do 
     it 'adds a ride to a mechanic' do 
-      visit "mechanics/#{@jelly.id}"
+      visit mechanic_path(@jelly)
 
       within("#add-a-ride") do 
         expect(page).to have_content('Add Ride to Responsibilities:')
@@ -34,7 +34,7 @@ RSpec.describe 'Mechanic Show Page' do
         click_button('Add Ride')
       end
 
-      expect(current_path).to eq("/mechanics/#{@jelly.id}")
+      expect(current_path).to eq(mechanic_path(@jelly))
       
       within("#rides") do 
         expect(page).to have_content("#{@turbinator.name}")

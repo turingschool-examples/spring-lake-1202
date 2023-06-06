@@ -10,7 +10,7 @@
 
 <section id="add-a-ride">
   <h3>Add Ride to Responsibilities:</h3>
-    <%= form_with url: "/ride_mechanics/new", method: :post, local: true do |form| %>
+    <%= form_with url: ride_mechanics_path, method: :post, local: true do |form| %>
       <%= form.text_field(:ride_id) %>
       <%= form.hidden_field(:mechanic_id, value: @mechanic.id) %>
       <%= form.submit 'Add Ride' %>

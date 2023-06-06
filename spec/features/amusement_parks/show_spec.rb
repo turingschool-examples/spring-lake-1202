@@ -26,14 +26,14 @@ RSpec.describe 'Amusement Park Show Page' do
   
   describe 'User Story 3' do 
     it 'displays park name & admissions cost' do 
-      visit "/amusement_parks/#{@six_flags.id}"
+      visit amusement_park_path(@six_flags)
 
       expect(page).to have_content("#{@six_flags.name}")
       expect(page).to have_content("Price of Admissions: #{@six_flags.admission_cost}")
     end
 
     it 'displays list of all mechanics' do 
-      visit "/amusement_parks/#{@six_flags.id}"
+      visit amusement_park_path(@six_flags)
 
       within("#mechanics") do 
         expect(page).to have_content("Mechanics:")
@@ -46,7 +46,7 @@ RSpec.describe 'Amusement Park Show Page' do
     end
 
     it 'list of all mechanics is unique' do 
-      visit "/amusement_parks/#{@six_flags.id}"
+      visit amusement_park_path(@six_flags)
 
       within("#mechanics") do 
         expect(page).to_not have_content(@josey.name).twice
