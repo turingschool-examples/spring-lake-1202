@@ -18,6 +18,7 @@ RSpec.describe 'Amusement Park Show Page' do
     @turbinator = @kingdom_come.rides.create!(name: 'The Turbinator', thrill_rating: 1, open: true)
     
     RideMechanic.create!(ride_id: @drop.id, mechanic_id: @jelly.id)
+    RideMechanic.create!(ride_id: @drop.id, mechanic_id: @josey.id)
     RideMechanic.create!(ride_id: @flight.id, mechanic_id: @jelly.id)
     RideMechanic.create!(ride_id: @tea_cups.id, mechanic_id: @janet.id)
     RideMechanic.create!(ride_id: @half_pipe.id, mechanic_id: @josey.id)
@@ -66,6 +67,14 @@ RSpec.describe 'Amusement Park Show Page' do
         expect(page).to have_content("#{@tea_cups.name}")
         expect(page).to have_content("#{@flight.name}")
         expect(page).to have_content("#{@half_pipe.name}")
+      end
+    end
+
+    it 'lists mechanic average years experience' do 
+      visit amusement_park_path(@six_flags)
+
+      within("#ride-#{@drop.id}") do 
+        expect(page).to have_content("Mechanic Average Years Experience: 21")
       end
     end
   end
