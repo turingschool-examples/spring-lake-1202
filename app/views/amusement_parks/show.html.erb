@@ -1,0 +1,8 @@
+<h1>Amusement Park</h1>
+<h2>Name: <%= @park.name %></h2>
+<p>Admission Price: <%= number_to_currency(@park.admission_cost) %>
+
+<h2>Mechanics working on rides:</h2>
+<% @park_mechs.each do |mech| %>
+  <p>Mechanic Name: <%= mech.name %></p>
+<% end %>
