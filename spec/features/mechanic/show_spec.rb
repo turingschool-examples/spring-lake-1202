@@ -40,11 +40,10 @@ RSpec.describe "Mechanic Show Page" do
   
   it "has a form to add an existing ride to the mechanic's workload" do 
     visit "mechanics/#{@mechanic1.id}"
-    
     expect(page).to have_content("Add a ride to workload:")
 
-    fill_in "Ride ID", with: "#{@ferris.id}"
-    click_button "Submit"
+    fill_in "ride_id", with: "#{@ferris.id}"
+    click_button "Save"
 
     expect(current_path).to eq("mechanics/#{@mechanic1.id}")
     expect(page).to have_content("Ferris Wheel")
