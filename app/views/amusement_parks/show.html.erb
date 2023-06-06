@@ -2,5 +2,9 @@
 <h3>Price of Admission: <%= @park.admission_cost %></h3>
 <p><b>Mechanics working on rides:</b></p>
 <section id="mechanics-working">
-
+<% @park.mechanics_working.each do |mechanic| %>
+  <ul> 
+    <li><%= mechanic %></li>
+  </ul>
+<% end %>
 </section>
