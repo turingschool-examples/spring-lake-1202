@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Mechanic Show Page' do
+RSpec.describe 'Mechanic Show Page', type: :feature do
 
   let(:amusement_park_1) { AmusementPark.create!(name: 'Hershey Park', admission_cost: 50) }
   let(:ride_1) { amusement_park_1.rides.create!(name: 'Lightning Racer', thrill_rating: 7, open: true) }
