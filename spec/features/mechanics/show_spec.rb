@@ -8,6 +8,7 @@ RSpec.describe 'mechanics show page' do
 
   let!(:log) { cedar.rides.create!(name: "Log Jammin'", thrill_rating: 6, open: true) }
   let!(:mant) { cedar.rides.create!(name: "The Mantis", thrill_rating: 9, open: true) }
+  let!(:holy) { cedar.rides.create!(name: "Holy Roller", thrill_rating: 10, open: false) }
 
   let!(:ride_mech_1) { RideMechanic.create!(mechanic_id: mech_1.id, ride_id: log.id) }
   let!(:ride_mech_2) { RideMechanic.create!(mechanic_id: mech_1.id, ride_id: mant.id) }
@@ -25,6 +26,20 @@ RSpec.describe 'mechanics show page' do
       
       expect(page).to have_content(log.name)
       expect(page).to have_content(mant.name)
+    end
+  end
+
+  describe 'displays a form to add a ride to their workload' do
+    it 'should display a form to assign an additonal ride to repair' do
+      visit mechanic_path(mech_1)
+      
+      expect(page).to have_button("Add Ride")
+      
+      fill_in(:id, with: "#{holy.id}")
+      click_button("Add Ride")
+      
+      expect(current_path).to eq(mechanic_path(mech_1))
+      expect(page).to have_content(holy.name)
     end
   end
 end
