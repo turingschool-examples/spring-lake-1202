@@ -6,5 +6,5 @@ Rails.application.routes.draw do
 
   # get "/mechanics/:id", to: "mechanics#show"
   
-  resources :mechanics, only: [:show]
+  resources :mechanics, only: [:show, :update]
 end

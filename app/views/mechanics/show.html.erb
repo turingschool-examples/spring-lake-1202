@@ -6,3 +6,13 @@
 <% @mechanic_rides.each do |ride| %>
   <%= ride.name %> |
 <% end %>
+
+<%= form_with model: @ride, url: mechanic_path(@mechanic), method: :patch do |form|  %>
+  <p><%= form.label :name %>
+  <%= form.text_field :name %></p>
+  <p><%= form.label :thrill_rating %>
+  <%= form.text_field :thrill_rating %></p>
+  <p><%= form.label :open %>
+  <%= form.check_box :open %></p>
+  <p><%= form.submit "Submit"  %>
+<% end %>
