@@ -37,14 +37,24 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
   
   it "displays the names of all of the mechanics working on the park's rides (unique list)" do 
     visit "/amusement_parks/#{@six_flags.id}"
-
+    
     expect(page).to have_content("Mechanics working on rides:")
-
+    
     within("#mechanics-working") do 
       expect(page).to have_content("Wolfie")
       expect(page).to have_content("Maggie")
       expect(page).to have_content("Ink Jet Printer")
       expect(page).to have_content("Pirate")
+    end
+  end
+  
+  it "displays the rides at the park ordered by mechanics avg years experience" do 
+    visit "/amusement_parks/#{@six_flags.id}"
+
+    expect(page).to have_content("Rides:")
+    within("#ride-#{@hurler.id}") do 
+      expect(page).to have_content("Name: #{@hurler.name}")
+      expect(page).to have_content("Mechanic Average Experience: 9")
     end
   end
 end
