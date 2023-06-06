@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   get "/mechanics/:id", to: "mechanics#show", as: "mechanic"
   patch "/mechanics/:id", to: "mechanics#update"
+
+  get "/amusement_parks/:id", to: "amusement_parks#show", as: "amusement_park"
 end
