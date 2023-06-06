@@ -38,9 +38,10 @@ RSpec.describe AmusementPark, type: :model do
     end
 
     it "#mechanic_average_exp" do 
-      expect(@six_flags.mechanic_average_exp.first.avg_exp).to eq(9)
-      expect(@six_flags.mechanic_average_exp.second.avg_exp).to eq(9.5)
-      expect(@six_flags.mechanic_average_exp).to match_array([@hurler, @scrambler, @ferris])
+      expect(@six_flags.mechanic_average_exp.first.avg_exp).to eq(3)
+      expect(@six_flags.mechanic_average_exp.last.avg_exp).to eq(9.5)
+      expect(@six_flags.mechanic_average_exp.second.avg_exp).to eq(9)
+      expect(@six_flags.mechanic_average_exp).to eq([@ferris, @hurler, @scrambler])
     end
   end
 end
