@@ -1,5 +1,11 @@
 <h1>Name: <%= @park.name %></h1>
 <h3>Price of Admission: <%= @park.admission_cost %></h3>
+<p><b>Rides: </b></p>
+<% @park.rides.each do |ride| %>
+  <div id="ride-<%= ride.id %>">
+  <p>Name: <%= ride.name %></p>
+<% end %>
+
 <p><b>Mechanics working on rides:</b></p>
 <section id="mechanics-working">
 <% @park.mechanics_working.each do |mechanic| %>
