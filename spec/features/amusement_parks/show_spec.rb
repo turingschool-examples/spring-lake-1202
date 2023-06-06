@@ -56,10 +56,3 @@ RSpec.describe 'Amusement Park Show Page' do
     end
   end
 end
-  # Story 3 - Amusement Park Show page
-  
-  # As a visitor,
-  # When I visit an amusement park’s show page,
-  # Then I see the name and price of admissions for that amusement park
-  # And I see the names of all mechanics that are working on that park's rides,
-  # And I see that the list of mechanics is unique
