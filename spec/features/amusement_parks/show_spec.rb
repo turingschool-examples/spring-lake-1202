@@ -50,11 +50,21 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
   
   it "displays the rides at the park ordered by mechanics avg years experience" do 
     visit "/amusement_parks/#{@six_flags.id}"
-
+save_and_open_page
     expect(page).to have_content("Rides:")
+    within("#ride-#{@ferris.id}") do 
+      expect(page).to have_content("Name: #{@ferris.name}")
+      expect(page).to have_content("Mechanic Average Experience: 3.0")
+    end
+
     within("#ride-#{@hurler.id}") do 
       expect(page).to have_content("Name: #{@hurler.name}")
-      expect(page).to have_content("Mechanic Average Experience: 9")
+      expect(page).to have_content("Mechanic Average Experience: 9.0")
+    end
+
+    within("#ride-#{@scrambler.id}") do 
+      expect(page).to have_content("Name: #{@scrambler.name}")
+      expect(page).to have_content("Mechanic Average Experience: 9.5")
     end
   end
 end
