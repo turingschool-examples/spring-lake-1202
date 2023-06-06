@@ -6,3 +6,8 @@
 <% @amusement_park.distinct_mechanics.each do |mechanic| %>
   <ul><%= mechanic.name %></ul>
 <% end %>
+
+<br><h2>Rides at <%= @amusement_park.name %></h2>
+<% @amusement_park.avg_mech_rides.each do |ride| %>
+  <ol><%= ride.name %> - Average time Mechanics have worked on Rides: <%= ride.mechanics.average(:years_experience) %></ol>
+<% end %>
