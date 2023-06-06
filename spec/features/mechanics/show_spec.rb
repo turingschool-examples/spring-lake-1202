@@ -11,8 +11,7 @@ RSpec.describe "Mechanics Show Page", type: :feature do
   end
   describe "When a user visits the mechanic show page" do
     it "displays mechanic's name, years of experience, and names of all the rides they are working on" do
-      visit "/mechanics/#{@mechanic_1.id}"
-      save_and_open_page
+      visit mechanic_path(@mechanic_1)
 
       expect(page).to have_content(@mechanic_1.name)
       expect(page).to have_content(@mechanic_1.years_experience)
