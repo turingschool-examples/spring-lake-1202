@@ -1,0 +1,10 @@
+<h1>Amusement Parks Show Page</h1>
+
+<h2>Name: <%= @amusement_park.name %></h2>
+<p>Admission Cost: $<%= @amusement_park.admission_cost %></p>
+
+<h2>Rides that Mechanics Are Working On:</h2>
+<% @mechanics.each do |mechanic| %>
+  <h4>Mechanic: <%= mechanic.name %></h4>
+  <p>Rides they’re working on: <%= mechanic.rides.pluck(:name).uniq.join(', ') %></p>
+<% end %>

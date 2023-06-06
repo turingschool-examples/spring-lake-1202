@@ -1,10 +1,7 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe AmusementPark, type: :model do
-  describe "relationships" do
-    it { should have_many(:rides) }
-  end
-  
+RSpec.describe 'Amusement Park Show Page' do
+
   let!(:amusement_park_1) { AmusementPark.create!(name: 'Hershey Park', admission_cost: 50) }
   let!(:amusement_park_2) { AmusementPark.create!(name: 'Cedar Point', admission_cost: 75) }
   let!(:ride_1) { amusement_park_1.rides.create!(name: 'Lightning Racer', thrill_rating: 7, open: true) }
@@ -22,14 +19,35 @@ RSpec.describe AmusementPark, type: :model do
   let!(:mechanic_ride_5) { MechanicRide.create!(mechanic: mechanic_3, ride: ride_3) }
   let!(:mechanic_ride_6) { MechanicRide.create!(mechanic: mechanic_4, ride: ride_4) }
 
-  
-  describe '#mechanics_working_on_rides' do
-    it 'returns the mechanics working on the amusement park rides' do
-      mechanics = amusement_park_1.mechanics_working_on_rides
-      expect(mechanics).to include(mechanic_1, mechanic_2, mechanic_3)
+  before(:each) do
 
-      expect(mechanics).to_not include(mechanic_4)
+    visit amusement_park_path(amusement_park_1)
+
+  end
+
+  describe 'As a visitor, when I visit the Amusement Park Show Page' do
+    it 'displays the name and price of admissions for that amusement park' do
+
+      expect(page).to have_content("Name: #{amusement_park_1.name}")
+      expect(page).to have_content("Admission Cost: $#{amusement_park_1.admission_cost}")
+
+      expect(page).to_not have_content("Name: #{amusement_park_2.name}")
+      expect(page).to_not have_content("Admission Cost: $#{amusement_park_2.admission_cost}")
+    end
+
+    it 'displays the names of all mechanics that are working on that park’s rides' do
+        
+      expect(page).to have_content("Mechanic: #{mechanic_1.name}")
+      expect(page).to have_content("Rides they’re working on: #{ride_1.name}, #{ride_2.name}")
+
+      expect(page).to have_content("Mechanic: #{mechanic_2.name}")
+      expect(page).to have_content("Rides they’re working on: #{ride_1.name}, #{ride_3.name}")
+
+      expect(page).to have_content("Mechanic: #{mechanic_3.name}")
+      expect(page).to have_content("Rides they’re working on: #{ride_3.name}")
+
+      expect(page).to_not have_content("Mechanic: #{mechanic_4.name}")
+      expect(page).to_not have_content("Rides they’re working on: #{ride_4.name}")
     end
   end
 end
-  
