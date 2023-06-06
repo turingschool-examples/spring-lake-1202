@@ -7,3 +7,12 @@
       <%= mechanic.name %>
     <% end %>
 </section>  
+
+<section id="rides">
+  <h3>Rides:</h3>
+    <% @park.rides.each do |ride| %>
+      <div id="ride-<%= ride.id %>">
+        <%= ride.name %>
+      </div>  
+    <% end %>
+</section>  
