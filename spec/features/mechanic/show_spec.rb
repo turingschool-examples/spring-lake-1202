@@ -42,7 +42,40 @@ RSpec.describe "Mechanic Show Page", type: :feature do
         expect(page).to have_content(@ride2.name)
         expect(page).to have_content(@ride3.name)
         expect(page).to_not have_content(@ride4.name)
-        save_and_open_page
+      end
+    end
+
+    it "Adds ride for mechanic maintenance" do
+      # Story 2 - Add a Ride to a Mechanic
+
+      # As a user,
+      # When I go to a mechanic's show page
+      # I see a form to add a ride to their workload
+      # When I fill in that field with an id of an existing ride and click Submit
+      # I’m taken back to that mechanic's show page
+      # And I see the name of that newly added ride on this mechanic's show page.
+
+      visit "/mechanics/#{@mechanic1.id}"
+
+      within "#rides" do
+        expect(page).to have_content(@ride1.name)
+        expect(page).to have_content(@ride2.name)
+        expect(page).to have_content(@ride3.name)
+        expect(page).to_not have_content(@ride4.name)
+      end
+
+      within "#ride-form" do
+        expect(page).to have_content("Add Ride for Mechanic")
+        fill_in "Ride", with: "#{@ride4.id}"
+        click_button "Submit"
+        expect(current_path).to eq("/mechanics/#{@mechanic1.id}")
+      end
+
+      within "#rides" do
+        expect(page).to have_content(@ride1.name)
+        expect(page).to have_content(@ride2.name)
+        expect(page).to have_content(@ride3.name)
+        expect(page).to have_content(@ride4.name)
       end
     end
   end
