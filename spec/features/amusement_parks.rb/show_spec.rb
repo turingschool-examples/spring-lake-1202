@@ -1,6 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe AmusementPark, type: :model do
+RSpec.describe 'amusement parks show page' do
   let!(:mech_1) { Mechanic.create!(name: "Buddy", years_experience: 18) }
   let!(:mech_2) { Mechanic.create!(name: "Ralph", years_experience: 26) }
   let!(:mech_3) { Mechanic.create!(name: "Xtina", years_experience: 12) }
@@ -19,15 +19,26 @@ RSpec.describe AmusementPark, type: :model do
   let!(:ride_mech_4) { RideMechanic.create!(mechanic_id: mech_2.id, ride_id: mant.id) }
   let!(:ride_mech_5) { RideMechanic.create!(mechanic_id: mech_3.id, ride_id: me.id) }
 
-  describe "relationships" do
-    it { should have_many(:rides) }
-    it { should have_many(:mechanics).through(:rides) }
-  end
+  describe 'displays the amusement parks attributes and mechanics working on rides there' do
+    it 'should display the amusement parks name and admission fee' do
+      visit amusement_park_path(cedar)
+      
+      expect(page).to have_content(cedar.name)
+      expect(page).to have_content(cedar.admission_cost)
+    end
 
-  describe "instance methods" do
-    it "#distinct_mechanics" do
-      expect(cedar.distinct_mechanics).to eq([mech_1, mech_2])
-      expect(elitch.distinct_mechanics).to eq([mech_3])
+    it 'should display the distinct names of the mechanics working on the rides' do
+      visit amusement_park_path(cedar)
+      
+      expect(page).to have_content(mech_1.name)
+      expect(page).to have_content(mech_2.name)
+      expect(page).to_not have_content(mech_3.name)
+      
+      visit amusement_park_path(elitch)
+      
+      expect(page).to_not have_content(mech_1.name)
+      expect(page).to_not have_content(mech_2.name)
+      expect(page).to have_content(mech_3.name)
     end
   end
 end

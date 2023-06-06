@@ -33,6 +33,7 @@ RSpec.describe 'mechanics show page' do
     it 'should display a form to assign an additonal ride to repair' do
       visit mechanic_path(mech_1)
       
+      expect(page).to have_content("Add a Ride to Workload")
       expect(page).to have_button("Add Ride")
       
       fill_in(:id, with: "#{holy.id}")
