@@ -1,12 +1,7 @@
 require "rails_helper"
 
-RSpec.describe AmusementPark, type: :model do
-  describe "relationships" do
-    it { should have_many(:rides) }
-    it { should have_many(:ride_mechanics).through(:rides) }
-  end
-
-  describe "class methods" do
+RSpec.describe "Amusement Park Show Page", type: :feature do
+  describe "Amusement Park Attributes" do
     before :each do
       @park1 = AmusementPark.create!(name: "Two Flags", admission_cost: 25)
       @park2 = AmusementPark.create!(name: "Dizzy World", admission_cost: 1000)
@@ -31,9 +26,22 @@ RSpec.describe AmusementPark, type: :model do
       @ride_mechanic6 = RideMechanic.create!(ride_id: @ride6.id, mechanic_id: @mechanic2.id)
       @ride_mechanic7 = RideMechanic.create!(ride_id: @ride7.id, mechanic_id: @mechanic3.id)
     end
-    
-    it "park_mechanics methods" do 
-      expect(@park1.park_mechanics).to eq([@mechanic1.name, @mechanic2.name])
+
+    it "shows amusement park data" do
+      # Story 3 - Amusement Park Show page
+      visit "amusement_parks/#{@park1.id}"
+
+      expect(page).to have_content("Park Name: #{@park1.name}")
+      expect(page).to have_content("Price of Admission: #{@park1.admission_cost}")
+      expect(@park1.admission_cost).to eq(25)
+      expect(page).to have_content("Park Mechanics")
+      expect(page).to_not have_content(@park2.name)
+
+      within "#park-mechanics" do
+        expect(page).to have_content(@mechanic1.name)
+        expect(page).to have_content(@mechanic2.name)
+        expect(page).to_not have_content(@mechanic3.name)
+      end
     end
   end
 end
