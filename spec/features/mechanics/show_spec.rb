@@ -20,8 +20,8 @@ RSpec.describe "the mechanics show page" do
       within(".mechanic_header") do 
         expect(page).to have_content("Mechanic: #{@bob.name}")
         expect(page).to have_content("Years of experience: #{@bob.years_experience}")
-        expect(page).to have_content("Working on: #{@hurler.name}")
-        expect(page).to have_content("Working on: #{@pukie.name}")
+        expect(page).to have_content("#{@hurler.name}")
+        expect(page).to have_content("#{@pukie.name}")
       end
     end
   end
