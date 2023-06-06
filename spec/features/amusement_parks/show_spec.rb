@@ -66,5 +66,9 @@ save_and_open_page
       expect(page).to have_content("Name: #{@scrambler.name}")
       expect(page).to have_content("Mechanic Average Experience: 9.5")
     end
+
+    expect("Ferris Wheel").to appear_before("The Hurler")
+    expect("The Hurler").to appear_before("The Scrambler")
+    expect("The Scrambler").to_not appear_before("Ferris Wheel")
   end
 end
