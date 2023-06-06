@@ -36,5 +36,11 @@ RSpec.describe AmusementPark, type: :model do
     it "#mechanics_working" do
       expect(@six_flags.mechanics_working).to match_array(["Wolfie", "Maggie", "Ink Jet Printer", "Pirate"])
     end
+
+    it "#mechanic_average_exp" do 
+      expect(@six_flags.mechanic_average_exp.first.avg_exp).to eq(9)
+      expect(@six_flags.mechanic_average_exp.second.avg_exp).to eq(9.5)
+      expect(@six_flags.mechanic_average_exp).to match_array([@hurler, @scrambler, @ferris])
+    end
   end
 end
