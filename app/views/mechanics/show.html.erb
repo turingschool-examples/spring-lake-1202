@@ -8,7 +8,7 @@
 <% end %>
 
 <p><b> Add a ride to workload: </b></p>
-<%= form_with url: ride_mechanics_path(mechnic_id: "#{@mechanic.id}"), method: :post, local: true do |form| %>
+<%= form_with url: ride_mechanics_path(mechanic_id: "#{@mechanic.id}"), method: :post, local: true do |form| %>
   <%= form.label "Ride ID" %>
   <%= form.text_field :ride_id %>
   <%= form.submit %>

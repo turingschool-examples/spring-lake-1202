@@ -28,7 +28,7 @@ RSpec.describe "Mechanic Show Page" do
     # @ride_mech9 = RideMechanic.create!(ride_id: @scrambler.id, mechanic_id: @mechanic3.id)
   end
   it "displays a mechanic's name, years experince, and all rides they're working on" do 
-    visit "mechanics/#{@mechanic1.id}"
+    visit "/mechanics/#{@mechanic1.id}"
     
     expect(page).to have_content("Name: #{@mechanic1.name}")
     expect(page).to have_content("Years of Experience: #{@mechanic1.years_experience}")
@@ -39,13 +39,13 @@ RSpec.describe "Mechanic Show Page" do
   end
   
   it "has a form to add an existing ride to the mechanic's workload" do 
-    visit "mechanics/#{@mechanic1.id}"
+    visit "/mechanics/#{@mechanic1.id}"
     expect(page).to have_content("Add a ride to workload:")
 
     fill_in "ride_id", with: "#{@ferris.id}"
     click_button "Save"
 
-    expect(current_path).to eq("mechanics/#{@mechanic1.id}")
+    expect(current_path).to eq("/mechanics/#{@mechanic1.id}")
     expect(page).to have_content("Ferris Wheel")
   end 
 end
