@@ -3,7 +3,7 @@ class CreateMechanics < ActiveRecord::Migration[7.0]
     create_table :mechanics do |t|
       t.string :name
       t.string :years_experience
-      t.references :ride, null: false, foreign_key: true
+    
 
       t.timestamps
     end
