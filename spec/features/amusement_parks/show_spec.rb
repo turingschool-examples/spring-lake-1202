@@ -55,4 +55,27 @@ RSpec.describe 'Amusement Park Show Page' do
       end
     end
   end
+
+  describe 'Extension' do 
+    it 'lists all park rides' do 
+      visit amusement_park_path(@six_flags)
+
+      within("#rides") do 
+        expect(page).to have_content("Rides:")
+        expect(page).to have_content("#{@drop.name}")
+        expect(page).to have_content("#{@tea_cups.name}")
+        expect(page).to have_content("#{@flight.name}")
+        expect(page).to have_content("#{@half_pipe.name}")
+      end
+    end
+  end
 end
+
+# Extensions - Amusement Park's Rides
+
+# As a visitor,
+# When I visit an amusement park's show page,
+# Then I see a list of all of the park's rides,
+# And next to the ride name I see the average experience of the mechanics working on the ride,
+# And I see the list of rides is ordered by the average experience of mechanics working on the ride.
+# (Note: you should only perform 1 database query to retrieve the list of rides with average mechanic experience)
