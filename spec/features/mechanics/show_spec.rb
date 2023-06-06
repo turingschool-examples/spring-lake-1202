@@ -9,15 +9,36 @@ RSpec.describe 'Mechanic Show Page' do
 
     RideMechanic.create!(ride_id: @juicer.id, mechanic_id: @jelly.id)
   end
+  describe 'User Story 1' do 
+    it 'displays attributes' do
+      visit "mechanics/#{@jelly.id}"
+      
+      expect(page).to have_content(@jelly.name)
+      expect(page).to have_content("Years of Experience: #{@jelly.years_experience}")
+      within("#rides") do
+        expect(page).to have_content("Rides Responsible:")
+        expect(page).to have_content("#{@juicer.name}")
+      end
+    end
+  end
+  
+  describe 'User Story 2' do 
+    it 'adds a ride to a mechanic' do 
+      visit "mechanics/#{@jelly.id}"
 
-  it 'displays attributes' do
-    visit "mechanics/#{@jelly.id}"
+      within("#add-a-ride") do 
+        expect(page).to have_content('Add Ride to Responsibilities:')
+        expect(page).to have_button('Add Ride')
 
-    expect(page).to have_content(@jelly.name)
-    expect(page).to have_content("Years of Experience: #{@jelly.years_experience}")
-    within("#rides") do
-      expect(page).to have_content("Rides Responsible:")
-      expect(page).to have_content("#{@juicer.name}")
+        fill_in(:ride_id, with: @turbinator.id)
+        click_button('Add Ride')
+      end
+
+      expect(current_path).to eq("/mechanics/#{@jelly.id}")
+      
+      within("#rides") do 
+        expect(page).to have_content("#{@turbinator.name}")
+      end
     end
   end
 end
