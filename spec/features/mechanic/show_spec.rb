@@ -28,7 +28,7 @@ RSpec.describe "Mechanic Show Page" do
     # @ride_mech9 = RideMechanic.create!(ride_id: @scrambler.id, mechanic_id: @mechanic3.id)
   end
   it "displays a mechanic's name, years experince, and all rides they're working on" do 
-    visit mechanics_path(@mechanic1)
+    visit "mechanics/#{@mechanic1.id}"
 
     expect(page).to have_content("Name: #{@mechanic1.name}")
     expect(page).to have_content("Years of Experience: #{@mechanic1.years_experience}")
