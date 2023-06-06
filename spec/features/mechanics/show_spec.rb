@@ -16,10 +16,13 @@ RSpec.describe "the mechanics show page" do
   describe "as a user" do 
     it "renders the mechanic's name, years of experience, and the names of rides they are working on" do 
       visit "/mechanics/#{@bob.id}"
-      expect(page).to have_content("Mechanic: #{@bob.name}")
-      expect(page).to have_content("Years of experience: #{@bob.years_experience}")
-      expect(page).to have_content("Working on: #{@hurler.name}")
-      expect(page).to have_content("Working on: #{@pukie.name}")
+
+      within(".mechanic_header") do 
+        expect(page).to have_content("Mechanic: #{@bob.name}")
+        expect(page).to have_content("Years of experience: #{@bob.years_experience}")
+        expect(page).to have_content("Working on: #{@hurler.name}")
+        expect(page).to have_content("Working on: #{@pukie.name}")
+      end
     end
   end
 end
