@@ -1,4 +1,4 @@
-<h1><%= @mechanic.name %></h1>
+<h1> Mechanic: <%= @mechanic.name %></h1>
 <p>Years of Expericnce: <%= @mechanic.years_experience %>
 
 <div id="rides">
@@ -6,4 +6,13 @@
   <% @rides.each do |ride| %>
     <p><%= ride.name %></p>
   <% end %>
+</div>
+
+<div id="ride-form">
+<h4> Add Ride for Mechanic </h4>
+<%= form_with url: "/mechanics/#{@mechanic.id}/ride_mechanics", local: true, method: :post do |f| %>
+  <%= f.label :ride_id %>
+  <%= f.text_field :ride_id %>
+  <%= f.submit "Submit" %>
+<% end %>
 </div>
