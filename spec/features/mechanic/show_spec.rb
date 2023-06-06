@@ -42,6 +42,7 @@ RSpec.describe "Mechanic Show Page", type: :feature do
         expect(page).to have_content(@ride2.name)
         expect(page).to have_content(@ride3.name)
         expect(page).to_not have_content(@ride4.name)
+        save_and_open_page
       end
     end
   end
