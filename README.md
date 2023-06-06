@@ -1,3 +1,6 @@
+<img width="1172" alt="Screenshot 2023-06-06 at 1 00 31 PM" src="https://github.com/kbergstrom78/spring-lake-1202/assets/124642113/3b6e42cd-4b56-4d6f-a617-d760ef8412ab">
+
+
 # Railer Coaster
 
 This repository requires and has been tested on Ruby v3.1.1 and is based on Rails 7.0.4.
