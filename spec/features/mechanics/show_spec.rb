@@ -45,7 +45,6 @@ RSpec.describe "the mechanics show page" do
         visit "/mechanics/#{@bob.id}"
 
         expect(page).to_not have_content("#{@rattler.name}")
-        save_and_open_page
         within(".add_ride_form") do
           fill_in "Ride Id", with: "#{@rattler.id}"
           click_button "Submit"
@@ -60,7 +59,6 @@ RSpec.describe "the mechanics show page" do
           expect(page).to have_content("#{@hurler.name}")
           expect(page).to have_content("#{@pukie.name}")
           expect(page).to have_content("#{@rattler.name}")
-          save_and_open_page
         end
       end
 
