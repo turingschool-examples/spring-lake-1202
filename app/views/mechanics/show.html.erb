@@ -10,4 +10,10 @@
   <% end %>
 </ul>
 
+<h3>Add a Ride to Workload:</h3>
+<%= form_with model: @mechanic, url: mechanic_rides_path(@mechanic), method: :post, local: true do |form| %>
+  <p><%= form.label :ride_id, "Ride ID:" %></p>
+  <p><%= form.number_field :ride_id %></p>
+  <p><%= form.submit "Add Ride" %></p>
+<% end %>
 

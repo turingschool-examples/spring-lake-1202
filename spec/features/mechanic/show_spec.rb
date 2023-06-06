@@ -16,4 +16,12 @@ RSpec.describe "mechanic#show" do
       expect(page).to have_content(mechanic_1.years_experience)
     end
   end
+
+  it "shows the names of all the rides they work on" do
+    visit "mechanics/#{mechanic_1.id}"
+    save_and_open_page
+    expect(page).to have_content(ride_1.name)
+    expect(page).to have_content(ride_2.name)
+  end
+
 end
