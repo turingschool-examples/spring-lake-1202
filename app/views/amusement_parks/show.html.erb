@@ -12,7 +12,8 @@
   <h3>Rides:</h3>
     <% @park.rides.each do |ride| %>
       <div id="ride-<%= ride.id %>">
-        <%= ride.name %>
+        <h4><%= ride.name %><h4>
+        <p>Mechanic Average Years Experience: <%= ride.mechanic_avg_experience %></p>
       </div>  
     <% end %>
 </section>  

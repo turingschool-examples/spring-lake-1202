@@ -75,7 +75,7 @@ RSpec.describe 'Amusement Park Show Page' do
       visit amusement_park_path(@six_flags)
 
       within("#ride-#{@drop.id}") do 
-        expect(page).to have_content("Mechanic Average Years Experience: 21")
+        expect(page).to have_content("Mechanic Average Years Experience: 21.0")
       end
     end
 
