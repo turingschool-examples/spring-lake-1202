@@ -29,7 +29,10 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
   end
 
   it "displays the name and price of admission for the park" do
+    visit "/amusement_parks/#{@six_flags.id}"
 
+    expect(page).to have_content("Name: #{@six_flags.name}")
+    expect(page).to have_content("Price of Admission: #{@six_flags.admission_cost}")
   end
 
   it "displays the names of all of the mechanics working on the park's rides (unique list)" do 
