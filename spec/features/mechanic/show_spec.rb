@@ -32,8 +32,8 @@ RSpec.describe "Mechanic Show Page", type: :feature do
     
       visit "/mechanics/#{@mechanic1.id}"
 
-      expect(page).to have_content(@mechanic1.name)
-      expect(page).to have_content(@mechanic1.years_experience)
+      expect(page).to have_content("Mechanic: #{@mechanic1.name}")
+      expect(page).to have_content("Years of Experience: #{@mechanic1.years_experience}")
       expect(@mechanic1.years_experience).to eq(35)
       expect(page).to_not have_content(@mechanic2.name)
 
