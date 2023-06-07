@@ -22,7 +22,7 @@ RSpec.describe "the mechanic's show page" do
       expect(page).to have_content(mechanic_1.name)
       expect(page).to have_content("Years of Experience: #{mechanic_1.years_experience}")
 
-      expect(page).to_not have_content(mechanic_2.name)
+      expect(page).not_to have_content(mechanic_2.name)
     end
   end
 
@@ -32,7 +32,7 @@ RSpec.describe "the mechanic's show page" do
       expect(page).to have_content(ride_1.name)
       expect(page).to have_content(ride_2.name)
 
-      expect(page).to_not have_content(ride_3.name)
+      expect(page).not_to have_content(ride_3.name)
     end
   end
 

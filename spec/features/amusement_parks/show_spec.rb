@@ -32,7 +32,7 @@ RSpec.describe "the amusement park's show page" do
         expect(page).to have_content(amusement_park_1.name)
         expect(page).to have_content("Price of Admission: $#{amusement_park_1.admission_cost}")
 
-        expect(page).to_not have_content(amusement_park_2.name)
+        expect(page).not_to have_content(amusement_park_2.name)
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe "the amusement park's show page" do
         expect(page).to have_content(mechanic_1.name, count: 1)
         expect(page).to have_content(mechanic_2.name, count: 1)
 
-        expect(page).to_not have_content(mechanic_3.name)
+        expect(page).not_to have_content(mechanic_3.name)
       end
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe "the amusement park's show page" do
         expect(page).to have_content(amusement_park_2.name)
         expect(page).to have_content("Price of Admission: $#{amusement_park_2.admission_cost}")
 
-        expect(page).to_not have_content(amusement_park_1.name)
+        expect(page).not_to have_content(amusement_park_1.name)
       end
     end
 
@@ -67,7 +67,7 @@ RSpec.describe "the amusement park's show page" do
         expect(page).to have_content(mechanic_2.name, count: 1)
         expect(page).to have_content(mechanic_3.name, count: 1)
 
-        expect(page).to_not have_content(mechanic_1.name)
+        expect(page).not_to have_content(mechanic_1.name)
       end
     end
   end
