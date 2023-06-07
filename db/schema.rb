@@ -29,12 +29,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_002323) do
   end
 
   create_table "ride_mechanics", force: :cascade do |t|
-    t.bigint "rides_id", null: false
-    t.bigint "mechanics_id", null: false
+    t.bigint "ride_id", null: false
+    t.bigint "mechanic_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["mechanics_id"], name: "index_ride_mechanics_on_mechanics_id"
-    t.index ["rides_id"], name: "index_ride_mechanics_on_rides_id"
+    t.index ["mechanic_id"], name: "index_ride_mechanics_on_mechanic_id"
+    t.index ["ride_id"], name: "index_ride_mechanics_on_ride_id"
   end
 
   create_table "rides", force: :cascade do |t|
@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_002323) do
     t.index ["amusement_park_id"], name: "index_rides_on_amusement_park_id"
   end
 
-  add_foreign_key "ride_mechanics", "mechanics", column: "mechanics_id"
-  add_foreign_key "ride_mechanics", "rides", column: "rides_id"
+  add_foreign_key "ride_mechanics", "mechanics"
+  add_foreign_key "ride_mechanics", "rides"
   add_foreign_key "rides", "amusement_parks"
 end
