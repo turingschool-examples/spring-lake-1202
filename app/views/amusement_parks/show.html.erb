@@ -1,0 +1,12 @@
+<h2><%= @park.name %> </h3>
+
+<h4>Park Details</h4>
+Admissions Cost: $<%= @park.admission_cost %> </br>
+Mechanics:
+<ol>
+<% @park.mechanics.distinct.each do |mechanic| %>
+  <ul> <%= mechanic.name %> </ul>
+  <% end %>
+  </ol>
+
+
