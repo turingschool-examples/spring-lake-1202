@@ -4,3 +4,13 @@ Years of Experience: <%= @mechanic.years_experience %>
 <% @mechanic.rides.each do |ride| %>
   <%= ride.name %> </br>
   <% end %>
+
+  <h3>Add Ride for Service</h3>
+
+  <%= form_with url: '/mechanics', method: :post, data: {turbo: false}, local: true do |form| %>
+    <section>
+      <%= form.label :ride_id %>
+      <%= form.text_field :ride_id, required: true %>
+    </section><br/><br/>
+    <%= form.submit %>
+  <% end %>
