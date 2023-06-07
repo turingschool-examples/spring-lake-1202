@@ -1,0 +1,15 @@
+<section id="page-title">
+  <h1><%= @amusement_park.name%></h1>
+  <p>Price of Admission: $<%= @amusement_park.admission_cost %></p>
+<section>
+<br/>
+
+<section id="mechanics">
+  <h3>Mechanics Currently Working:</h3>
+  <ul>
+    <% @amusement_park.names_of_mechanics_working.each do |name| %>
+      <li><%= name %></li>
+    <% end %>
+  </ul>
+</section>
+<br/>
