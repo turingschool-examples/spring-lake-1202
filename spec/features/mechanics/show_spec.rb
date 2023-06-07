@@ -35,4 +35,22 @@ RSpec.describe "the mechanic's show page" do
       expect(page).to_not have_content(ride_3.name)
     end
   end
+
+  it "displays a form to add a ride to the mechanic's workload by ride id" do
+    within("#add-ride") do
+      expect(page).to have_content("Add a ride to workload by Ride ID:")
+      expect(page).to have_field(:ride_id)
+      expect(page).to have_button("Submit")
+    end
+
+    fill_in :ride_id, with: ride_3.id
+
+    click_button "Submit"
+
+    expect(current_path).to eq(mechanic_path(mechanic_1))
+
+    within("#current-rides") do
+      expect(page).to have_content(ride_3.name)
+    end
+  end
 end
